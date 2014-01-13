@@ -57,23 +57,21 @@ Timeline:
 
 Project structure:
 	Models
-		User
-			Username
-			Password
-			Foreign key to Album
-			Foreign key to Payment
+		Django.auth - User
 		Album
 			Name
 			Date of creation
 			Link
-			Layout
 			Status (public or private)
-			Foreign key to Picture
+			Foreign key to User
+		Page
+			Layout
+			Foreign key to Album
 		Picture
 			Name
-			Size
-			Date of uploading
 			Source
+			Order
+			Foreign key to Page
 		Payments
 			PID
 			SID
