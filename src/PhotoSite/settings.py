@@ -1,5 +1,5 @@
 """
-Django settings for webSIte project.
+Django settings for PhotoSite project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'PhotoAlbum'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -47,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'webSIte.urls'
+ROOT_URLCONF = 'PhotoSite.urls'
 
-WSGI_APPLICATION = 'webSIte.wsgi.application'
+WSGI_APPLICATION = 'PhotoSite.wsgi.application'
 
 
 # Database
