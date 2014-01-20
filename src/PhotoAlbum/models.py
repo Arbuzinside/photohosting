@@ -14,4 +14,4 @@ class Picture(models.Model):
     Title = models.CharField(max_length = 255)
     Source = models.URLField()
     Order = models.IntegerField()
-    ContainingPage = models.ForeignKey(Page, related_name="Pictures")
+    'ContainingPage = models.ForeignKey(Page, related_name="Pictures")'

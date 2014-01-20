@@ -26,34 +26,34 @@ Functionalities:
 Timeline:
 	The project will be divided into 6 sprints, one sprint for a week, starting from the 6th of January.
 	
-	Tasks for the first week:
-		Implement the Django models
-		Create the structure of the project and website
+Tasks for the first week:
+	Implement the Django models
+	Create the structure of the project and website
+
+Tasks for the second week:
+	Authentication - on the server side
+		Using Django's session framework
+	3rd party login
+		Using existing APIs
+	Create the templates for the views
 	
-	Tasks for the second week:
-		Authentication - on the server side
-			Using Django's session framework
-		3rd party login
-			Using existing APIs
-		Create the templates for the views
-		
-	Tasks for the third week:
-		Create the basic functionalities - both on the client and server side
-			Using AJAX to display images
-			Using CSS for the layouts and styles
+Tasks for the third week:
+	Create the basic functionalities - both on the client and server side
+		Using AJAX to display images
+		Using CSS for the layouts and styles
+
+Tasks for the fourth week:
+	Tasks are divided between the members of the team
+		Creating public links - client side
+		Sharing albums - client side
+		Integration with Flickr - client side
 	
-	Tasks for the fourth week:
-		Tasks are divided between the members of the team
-			Creating public links - client side
-			Sharing albums - client side
-			Integration with Flickr - client side
-		
-	Tasks for the fifth week:
-		Implementing the ordering functionality - client side
-		Payment functionality - server side
-		
-	Task for the sixth week:
-		Testing and finalizing the project
+Tasks for the fifth week:
+	Implementing the ordering functionality - client side
+	Payment functionality - server side
+	
+Task for the sixth week:
+	Testing and finalizing the project
 
 Project structure:
 	Models
