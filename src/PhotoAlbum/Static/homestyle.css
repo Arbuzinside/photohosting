@@ -6,7 +6,54 @@ body
 	min-width: 800px;
 }
 
-div
+div#content
 {
 	margin-left: 100px;
 }
+
+input#albumtitle
+{
+	margin: 30px 10px;
+	border-style: none;
+	background-color: transparent;
+	height: 40px;
+	font-size: 40px;
+}
+
+div#albumcontent
+{
+	width: 810px;
+	height: 400px;
+}
+
+*:focus {
+    outline: 0;
+}
+
+div#leftpage, div#rightpage
+{
+	background-position: center center;
+	background-image: url('/Static/images/page.png');
+	background-size: 50px;
+	background-repeat: no-repeat;
+	border: 1px dotted;
+	width: 400px;
+	height: 400px;
+	cursor: pointer;
+}
+div#leftpage
+{
+	float: left;
+}
+
+div#rightpage
+{
+	float: right;
+}
+
+
+/*
+textarea:focus, input:focus{
+    outline: 0;
+} 
+*/

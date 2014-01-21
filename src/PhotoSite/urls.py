@@ -8,9 +8,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'webSIte.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^picture/', 'PhotoAlbum.views.show_picture', name='show_picture'),
-    url(r'^home/', 'PhotoAlbum.views.home', name='home'),
-    url(r'^home/edit/', 'PhotoAlbum.views.edit', name='edit'),
+    url(r'^admin/$', include(admin.site.urls)),
+    url(r'^picture/$', 'PhotoAlbum.views.show_picture', name='show_picture'),
+    url(r'^home/$', 'PhotoAlbum.views.home', name='home'),
+    url(r'^home/edit/$', 'PhotoAlbum.views.edit', name='edit'),
     url(r'^$', 'PhotoAlbum.views.index', name='index'),
 )

@@ -5,14 +5,14 @@
 	<head>
 		<title>Create your photoalbum!</title>
 		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" >
-		<link rel="stylesheet" href="{% static 'header.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" >
 	</head>
 	<body>
 		{% include "header.html" %}
 		<div id="albums">
 			<h1>All albums</h1>
 			<!-- TODO include "album.html" -->
-			<a href="{% url 'PhotoAlbum.views.edit' %}">Add album</a>
+			<a href="{% url 'PhotoAlbum.views.edit' %}">New album</a>
 		</div>
 	</body>
 </html>

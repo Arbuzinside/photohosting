@@ -4,15 +4,37 @@
 <html>
 	<head>
 		<title>Create your photoalbum!</title>
-		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" >
-		<link rel="stylesheet" href="{% static 'header.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
+		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/dark-hive/jquery-ui.css" rel="stylesheet">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<script src="{% static 'newpage.js' %}"></script>
 	</head>
 	<body>
 		{% include "header.html" %}
-		<div id="albums">
-			<h1>All albums</h1>
-			<!-- TODO include "album.html" -->
-			<a href="edit.html">Add album</a>
+		<div id="content"> <!-- needed? -->
+			<label for="albumtitle">Title:</label>
+			<input id="albumtitle" type="text" length="30" placeholder="New Album"/>
+			<div id="albumcontent">
+				<div id="leftpage">
+				<!--
+					<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
+					<p>create page</p>
+				-->
+				</div>
+				
+				<div id="rightpage">
+				<!--
+					<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
+					<p>create page</p>
+				-->
+				</div>
+			</div>
+		</div>
+		<div id="dialog" title="Select a layout">
+			<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
+			<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
 		</div>
 	</body>
 </html>
