@@ -1,6 +1,6 @@
 {% block content %}
 <div id="header">	
-	<div id="title"><a href="home.html">PhotoSite</a></div>
+	<div id="title"><a href="{% url 'PhotoAlbum.views.home' %}">PhotoSite</a></div>
 	<ul id="optionslist">
 		<li><a href="">Albums</a> </li>		<!--TODO href with python-->
 		<li><a href="">Explore</a> </li>
