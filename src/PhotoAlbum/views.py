@@ -7,3 +7,6 @@ def show_picture(request):
 
 def index(request):
     return render_to_response("index.html", {})  
+
+def home(request):
+    return render_to_response("home.html", {})

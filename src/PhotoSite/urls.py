@@ -10,5 +10,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^picture/', 'PhotoAlbum.views.show_picture', name='show_picture'),
+    url(r'^home/', 'PhotoAlbum.views.home', name='home'),
     url(r'^$', 'PhotoAlbum.views.index', name='index'),
 )

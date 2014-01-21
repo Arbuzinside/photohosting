@@ -1,0 +1,142 @@
+body
+{
+	font-family: Helvetica, Verdana, Sans-serif;
+	margin: 0;
+	background-color: lightgray;
+	min-width: 800px;
+}
+
+div
+{
+	margin-left: 100px;
+}
+
+input[type="submit"]
+{
+	cursor: pointer;
+}
+
+#header
+{
+	background-color: black;
+	color: white;
+	height: 85px;
+	margin: 0;
+}
+
+#title
+{
+	font-size: 200%;
+	font-weight: bold; 
+	color: magenta;
+	float: left;
+	padding-top: 20px;
+}
+
+#logintable
+{
+	float: right;
+	font-size: 70%;
+	padding-top: 10px;
+	margin-right: 80px;
+}
+
+#logintable input
+{
+	margin: 0;
+	padding: 2px; 
+	border: 1px solid #ccc; 
+	-webkit-border-radius: 4px;
+	border-radius: 3px;
+}
+
+#logintable input[type="submit"]
+{
+	background-color: darkmagenta;
+	color: white;
+	border-color: black;
+	padding: 3px 10px;
+	font-weight: bold;
+}
+
+#logintable a
+{
+	color: darkmagenta;
+}
+
+h1
+{
+	clear: both;
+	margin-left: 100px;
+}
+
+#featured
+{
+	float: left;
+	width: 50%;
+	max-height: 450px;
+	margin-right: 0;
+}
+
+#slideshow { 
+    margin: 0; 
+    position: relative; 
+    height: 370px; 
+    padding: 10px; 
+	background-color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+#slideshow > div { 
+    position: absolute;
+	display: none;
+	margin: 0;
+}
+
+#slideshow > div:first-child 
+{
+	display: block;
+}
+
+#slideshow > div img
+{
+	width: 100%;
+}
+
+h2
+{
+	margin: 0 0 30px 0;
+	font-size: 150%;
+}
+
+#reg
+{
+	float: right;
+	width: 30%;
+	border-radius: 20px;
+	margin: 0 60px 0 0;
+}
+
+#reg input 
+{
+	width: 90%;
+	height: 30px;
+	padding: 5px 0 5px 5px; 
+	border: 2px solid #ccc; 
+	-webkit-border-radius: 5px;
+	border-radius: 10px;
+	font-size: 120%;
+	margin-bottom: 5px;
+}
+
+#reg input[type="submit"]
+{
+	width: 130px;
+	height: 45px;
+	margin-top: 65px;
+	background-color: darkmagenta;
+	border-color: darkmagenta;
+	color: white;
+	font-weight: bold;
+	font-size: 120%;
+}

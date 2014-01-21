@@ -1,0 +1,79 @@
+#header
+{
+	background-color: black;
+	color: white;
+	height: 85px;
+	margin: 0;
+}
+
+#header a
+{
+	text-decoration: none;
+	color: magenta;
+}
+
+#header #title
+{
+	font-size: 200%;
+	font-weight: bold; 
+	color: magenta;
+	float: left;
+	padding-top: 20px;
+}
+
+#header ul
+{
+	float: right;
+	padding-top: 10px;
+	margin-right: 60px;
+	font-size: 120%;
+	list-style: none;
+}
+
+#header li
+{
+	list-style-type: none;
+	display: inline;
+	margin-right: 30px;
+	float: left;
+	cursor: pointer;
+}
+
+#header li a
+{
+	color: white;
+	display: block;
+}
+
+#header li a:hover
+{
+	color: #FF99FF;
+}
+
+#optionslist ul
+{
+	position: absolute;
+    display: none;
+	width: 130px;
+	z-index: 999;
+}
+
+#optionslist li:hover ul {
+    display: block;
+	background-color: black;
+	font-size: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#optionslist li:hover ul li:first-child
+{
+	font-size: 50%;
+	cursor: default;
+}
+
+#optionslist li:hover ul li
+{
+	width: 100%;
+	padding: 10px 0 5px 10px;
+}

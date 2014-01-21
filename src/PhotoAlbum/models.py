@@ -4,6 +4,7 @@ class Album(models.Model):
     Title = models.CharField(max_length = 255)
     Date = models.DateTimeField()
     Link = models.URLField()
+    'Preview picture - for slideshows'
     'Owner = models.ForeignKey()'
 
 class Page(models.Model):

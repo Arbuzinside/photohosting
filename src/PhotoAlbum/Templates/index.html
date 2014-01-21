@@ -1,0 +1,58 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create your photoalbum!</title>
+		<link rel="stylesheet" href="{% static 'indexstyle.css' %}" type="text/css" >
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="{% static 'Slider/slideshow.js' %}"></script>
+	</head>
+	<body>
+		<div id="header">	
+			<div id="title">PhotoSite</div>
+			<form method="POST" action="">
+				<table id="logintable">
+					<tr>
+						<td> <label for="loginname">Username</label> </td>
+						<td> <label for="loginpasswd">Password</label> </td>
+						<td> </td>
+					</tr>
+					<tr>
+						<td> <input id="loginname" type="text"> </td>
+						<td> <input id="loginpasswd" type="password"> </td>
+						<td> <input type="submit" value="Sign In" class="button"> </td>
+					</tr>
+					<tr>
+						<td> <input type="checkbox" id="keep"> <label for="keep">Keep me logged in</label> </td>
+						<td> <a href="">Forgot password</a> </td>
+						<td> </td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<h1>Welcome to our website!</h1>
+		<div id="featured">
+			<h2>Featured Albums</h2>	<!--TODO featured albums: slideshow/mozaik-->
+			<div id="slideshow">
+				<div><img class="show" alt="pic1" src="{% static 'Slider/images/cat1.png' %}" /></div>
+				<div><img class="show" alt="pic2" src="{% static 'Slider/images/cat2.png' %}" /></div>
+				<div><img class="show" alt="pic3" src="{% static 'Slider/images/cat3.png' %}" /></div>
+			</div>
+		</div>
+		<div id="reg">					<!--TODO validatation-->
+			<form method="POST" action="">
+				<h2>Sign Up</h2>
+				<label for="regname">Username:</label><br>
+				<input id="regname" type="text"><br>
+				<label for="regemail">Email:</label><br>
+				<input id="regemail" type="text"><br>
+				<label for="regpasswd">Password:</label><br>
+				<input id="regpasswd" type="password"><br>
+				<label for="regpasswd2">Re-enter password:</label><br>
+				<input id="regpasswd2" type="password"><br>
+				<input type="submit" value="Sign Up">
+			</form>
+		</div>
+	</body>
+</html>
