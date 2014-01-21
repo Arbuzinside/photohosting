@@ -6,13 +6,23 @@
 		<title>Create your photoalbum!</title>
 		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" >
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'albumstyle.css' %}" type="text/css" >
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="{% static 'albumcap.js' %}"></script>
 	</head>
 	<body>
 		{% include "header.html" %}
 		<div id="albums">
 			<h1>All albums</h1>
-			<!-- TODO include "album.html" -->
-			<a href="{% url 'PhotoAlbum.views.edit' %}">New album</a>
+			<div id="albumcontainer">
+				<a id="createnew" href="{% url 'PhotoAlbum.views.edit' %}">
+					<img alt="createnew" src="{% static 'images/newalbumicon.png' %}"/>
+					Create new album
+				</a>
+				{% for a in album %}
+					{% include "album.html" with actalbum=a %}
+				{% endfor %}
+			</div>
 		</div>
 	</body>
 </html>

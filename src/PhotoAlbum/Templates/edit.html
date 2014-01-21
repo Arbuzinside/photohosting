@@ -13,28 +13,28 @@
 	</head>
 	<body>
 		{% include "header.html" %}
-		<div id="content"> <!-- needed? -->
+		<div id="titlecontainer">
 			<label for="albumtitle">Title:</label>
-			<input id="albumtitle" type="text" length="30" placeholder="New Album"/>
-			<div id="albumcontent">
-				<div id="leftpage">
-				<!--
-					<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
-					<p>create page</p>
-				-->
-				</div>
-				
-				<div id="rightpage">
-				<!--
-					<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
-					<p>create page</p>
-				-->
-				</div>
+			<input id="albumtitle" type="text" placeholder="New Album"/>
+		</div>
+		<div id="albumcontent">
+			<div id="leftpage">
+			<!--
+				<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
+				<p>create page</p>
+			-->
+			</div>
+			
+			<div id="rightpage">
+			<!--
+				<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
+				<p>create page</p>
+			-->
 			</div>
 		</div>
 		<div id="dialog" title="Select a layout">
-			<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
-			<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
+			<img src="{% static 'images/editicon.png' %}" alt="new page" />
+			<img src="{% static 'images/deleteicon.png' %}" alt="new page" />
 		</div>
 	</body>
 </html>

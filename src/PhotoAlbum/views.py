@@ -9,7 +9,8 @@ def index(request):
     return render_to_response("index.html", {})  
 
 def home(request):
-    return render_to_response("home.html", {})
+    albums = Album.objects.all()
+    return render_to_response("home.html", {'album' : albums})
 
 def edit(request):
     return render_to_response("edit.html", {})
