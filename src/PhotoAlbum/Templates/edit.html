@@ -19,17 +19,18 @@
 		</div>
 		<div id="albumcontent">
 			<div id="leftpage">
-			<!--
-				<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
-				<p>create page</p>
-			-->
+				<div id="leftcontroller">
+					<a href=""><img class="move" alt="back" src="{% static 'images/backicon.png' %}"/></a>
+					<a href=""><img class="bottomicon" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" /></a>
+				</div>
 			</div>
 			
 			<div id="rightpage">
-			<!--
-				<img src="{% static 'images/page.png' %}" width="50px" height="60px" alt="new page" />
-				<p>create page</p>
-			-->
+				<div id="rightcontroller">
+					<a href=""><img class="uppericon" alt="addpage" src="{% static 'images/addpage.png' %}" /></a>
+					<a href=""><img class="move" alt="back" src="{% static 'images/nexticon.png' %}"/></a>
+					<a href=""><img class="bottomicon" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" /></a>
+				</div>
 			</div>
 		</div>
 		<div id="dialog" title="Select a layout">
