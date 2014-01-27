@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+{% block content %}
+<div class="album">
+	<img id="album.{{actalbum.id}}" class="albumimg" alt="album{{actalbum.id}}" src="{{actalbum.Link}}" />
+	<div id="contr.{{actalbum.id}}" class="albumcontrollers">
+		<button class="albumbutton" type="button"><img alt="deleteicon" src="{% static 'images/deleteicon.png' %}" /> Delete</button>
+		<button class="albumbutton" type="button"><img alt="shareicon" src="{% static 'images/shareicon.png' %}" /> Share</button>
+		<button class="albumbutton" type="button"><img alt="editicon" src="{% static 'images/editicon.png' %}" /> Edit</button>
+		<p class="albumcap">{{actalbum.Title}}</p>
+	</div>
+</div>
+{% endblock %}
