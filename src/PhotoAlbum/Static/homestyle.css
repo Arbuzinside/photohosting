@@ -55,18 +55,23 @@ body
 	margin: 20px 0px 20px 230px;
 }
 
-input #albumtitle
+#titlecontainer label
 {
-	margin: 30px 10px;
+	font-size: 180%;
+}
+
+#albumtitle
+{
+	margin: 0 10px;
 	border-style: none;
 	background-color: transparent;
-	height: 40px;
-	font-size: 40px;
+	font-size: 180%;
+	color: darkmagenta;
 }
 
 #albumcontent
 {
-	margin: 0 230px 100px 230px;
+	margin: 0 230px 30px 230px;
 	height: 500px;
 }
 
@@ -85,6 +90,7 @@ input #albumtitle
 	height: 100%;
 	cursor: pointer;
 	margin: 0;
+	padding: 0;
 }
 #leftpage
 {

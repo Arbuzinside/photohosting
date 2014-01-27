@@ -6,6 +6,7 @@
 		<title>Create your photoalbum!</title>
 		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'Layouts/Layout1style.css' %}" type="text/css" />
 		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/dark-hive/jquery-ui.css" rel="stylesheet">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
@@ -23,6 +24,7 @@
 					<a href=""><img class="move" alt="back" src="{% static 'images/backicon.png' %}"/></a>
 					<a href=""><img class="bottomicon" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" /></a>
 				</div>
+				{% include "Layouts/Layout1.html" %}
 			</div>
 			
 			<div id="rightpage">
