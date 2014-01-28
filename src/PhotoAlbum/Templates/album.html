@@ -6,7 +6,7 @@
 	<div id="contr.{{actalbum.id}}" class="albumcontrollers">
 		<button class="albumbutton" type="button"><img alt="deleteicon" src="{% static 'images/deleteicon.png' %}" /> Delete</button>
 		<button class="albumbutton" type="button"><img alt="shareicon" src="{% static 'images/shareicon.png' %}" /> Share</button>
-		<button class="albumbutton" type="button"><img alt="editicon" src="{% static 'images/editicon.png' %}" /> Edit</button>
+		<button class="albumbutton" type="button" onclick="location.href='{% url 'PhotoAlbum.views.edit' %}'"><img alt="editicon" src="{% static 'images/editicon.png' %}" /> Edit</button>
 		<p class="albumcap">{{actalbum.Title}}</p>
 	</div>
 </div>

@@ -3,6 +3,7 @@ from models import Album, Page, Picture
 
 def show_picture(request):
     pictures = Picture.objects.get(Title = 'Bunny')
+    print pictures.Title
     return render_to_response("picture.html", {'pics' : pictures})
 
 def index(request):
@@ -10,6 +11,9 @@ def index(request):
 
 def home(request):
     albums = Album.objects.all()
+    for alb in albums:
+        print alb.Title
+    
     return render_to_response("home.html", {'album' : albums})
 
 def edit(request):
