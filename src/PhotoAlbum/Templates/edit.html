@@ -10,13 +10,18 @@
 		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/dark-hive/jquery-ui.css" rel="stylesheet">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-		<script src="{% static 'newpage.js' %}"></script>
+		<script src="{% static 'edit.js' %}"></script>
 	</head>
 	<body>
 		{% include "header.html" %}
 		<div id="titlecontainer">
-			<label for="albumtitle">Title:</label>
-			<input id="albumtitle" type="text" placeholder="New Album"/>
+			<form method="POST" action="{% url 'PhotoAlbum.views.home' %}">{% csrf_token %}
+				<label for="albumtitle">Title:</label>
+				<input id="albumtitle" name="title" type="text" placeholder="New Album"/>
+				<input id="savealbum" type="submit" value="Save Album">
+			</form>
+			
+
 		</div>
 		<div id="albumcontent">
 			<div id="leftpage">
@@ -24,7 +29,7 @@
 					<a href=""><img class="move" alt="back" src="{% static 'images/backicon.png' %}"/></a>
 					<a href=""><img class="bottomicon" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" /></a>
 				</div>
-				{% include "Layouts/Layout1.html" %}
+				<!-- {% include "Layouts/Layout1.html" %} -->
 			</div>
 			
 			<div id="rightpage">

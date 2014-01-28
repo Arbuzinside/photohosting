@@ -22,7 +22,7 @@ body
 	display: inline;
 }
 
-#createnew
+#createnewalbum
 {
 	float: left;
 	width: 350px;
@@ -36,7 +36,7 @@ body
 	margin: 10px;
 }
 
-#createnew img
+#createnewalbum input
 {
 	width: 200px;
 	margin-left: auto;
@@ -44,7 +44,7 @@ body
 	display: block;
 }
 
-#createnew:hover, #leftpage:hover, #rightpage:hover
+#createnewalbum:hover, #leftpage:hover, #rightpage:hover
 {
 	color: darkmagenta;
 	border: 1px solid darkmagenta;

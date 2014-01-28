@@ -1,18 +1,24 @@
 from django.db import models
+from django.forms import ModelForm
 
 class Album(models.Model):
-    Title = models.CharField(max_length = 255)
-    Date = models.DateTimeField()
-    Link = models.URLField()
+    title = models.CharField(max_length = 255)
+    date = models.DateTimeField()
+    link = models.URLField()
     'Preview picture - for slideshows'
     'Owner = models.ForeignKey()'
 
+class AlbumForm(ModelForm):
+    class Meta:
+        model = Album
+        fields = ('title', )
+
 class Page(models.Model):
-    Layout = models.IntegerField()
-    ContainingAlbum = models.ForeignKey(Album, related_name="Pages")
+    layout = models.IntegerField()
+    containingAlbum = models.ForeignKey(Album, related_name="Pages")
     
 class Picture(models.Model):
-    Title = models.CharField(max_length = 255)
-    Source = models.URLField()
-    Order = models.IntegerField()
+    title = models.CharField(max_length = 255)
+    source = models.URLField()
+    order = models.IntegerField()
     'ContainingPage = models.ForeignKey(Page, related_name="Pictures")'
