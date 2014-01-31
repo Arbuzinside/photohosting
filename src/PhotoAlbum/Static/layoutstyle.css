@@ -1,0 +1,42 @@
+#toppanel, #bottompanel, #allpanel, #leftpanel, #rightpanel
+{
+	height: 47%;
+	background-image: url('/Static/images/newimage.png');
+	background-size: 150px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border: 1px dashed #333333;
+	margin: 10px;
+	cursor: pointer;
+}
+
+#toppanel:hover, #bottompanel:hover, #allpanel:hover, #leftpanel:hover, #rightpanel:hover 
+{
+	border: 1px solid darkmagenta;
+}
+
+#toppanel, #bottompanel, #allpanel
+{
+	clear: both;
+	width: 95%;
+}
+
+#leftpanel, #rightpanel
+{
+	width: 44%;
+}
+
+#leftpanel
+{
+	float: left;
+}
+
+#rightpanel
+{
+	float: right;
+}
+
+#allpanel
+{
+	height: 95%;
+}

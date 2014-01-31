@@ -83,7 +83,7 @@ function applylayout(index) // index: selected layout index
 		imageplace = event.target.id;
 		page = $("#" + imageplace).parent().attr('id') == "leftpage" ? 0 : 1;
 		
-		$('input[name=picurl]').val('');
+		$('input[name=picurl]').val('');	// clear url textbox
 		$('#uploadpic').dialog("open");		// pops up dialog to enter picture url
 	});
 }
