@@ -4,40 +4,44 @@
 <html>
 	<head>
 		<title>Create your photoalbum!</title>
-		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'editstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
-		<link rel="stylesheet" href="{% static 'Layouts/Layout1style.css' %}" type="text/css" />
-		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/dark-hive/jquery-ui.css" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'layoutstyle.css' %}" type="text/css" />
+		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/vader/jquery-ui.css" rel="stylesheet">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-		<script src="{% static 'newpage.js' %}"></script>
+		<script src="{% static 'edit.js' %}"></script>
 	</head>
 	<body>
 		{% include "header.html" %}
 		<div id="titlecontainer">
-			<label for="albumtitle">Title:</label>
-			<input id="albumtitle" type="text" placeholder="New Album"/>
+			<form method="POST" action="{% url 'PhotoAlbum.views.home' %}">{% csrf_token %}
+				<label for="albumtitle">Title:</label>
+				<input id="albumtitle" name="title" type="text" placeholder="New Album"/>
+				<input id="savealbum" type="submit" value="Save Album">
+			</form>
 		</div>
 		<div id="albumcontent">
-			<div id="leftpage">
-				<div id="leftcontroller">
-					<a href=""><img class="move" alt="back" src="{% static 'images/backicon.png' %}"/></a>
-					<a href=""><img class="bottomicon" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" /></a>
-				</div>
-				<!--{% include "Layouts/Layout1.html" %}-->
+			<div id="leftcontroller">
+				<a href=""><img class="move" alt="back" src="{% static 'images/backicon.png' %}"/></a>
+				<a href=""><img class="bottomicon" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" /></a>
 			</div>
-			
-			<div id="rightpage">
-				<div id="rightcontroller">
-					<a href=""><img class="uppericon" alt="addpage" src="{% static 'images/addpage.png' %}" /></a>
-					<a href=""><img class="move" alt="back" src="{% static 'images/nexticon.png' %}"/></a>
-					<a href=""><img class="bottomicon" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" /></a>
-				</div>
+			<div id="leftpage" ></div>
+			<div id="rightcontroller">
+				<a href=""><img class="uppericon" alt="addpage" src="{% static 'images/addpage.png' %}" /></a>
+				<a href=""><img class="move" alt="back" src="{% static 'images/nexticon.png' %}"/></a>
+				<a href=""><img class="bottomicon" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" /></a>
 			</div>
+			<div id="rightpage" ></div>
 		</div>
 		<div id="dialog" title="Select a layout">
-			<img src="{% static 'images/editicon.png' %}" alt="new page" />
-			<img src="{% static 'images/deleteicon.png' %}" alt="new page" />
+			<input name="layoutselect" type="radio" value="1" id="dialog1" class="dialogimages" ><label for="dialog1"><img alt="layout1" src="{% static 'images/layout1.png' %}"></label>
+			<input name="layoutselect" type="radio" value="2" id="dialog2" class="dialogimages" ><label for="dialog2"><img alt="layout2" src="{% static 'images/layout2.png' %}"></label>
+			<input name="layoutselect" type="radio" value="3" id="dialog3" class="dialogimages" ><label for="dialog3"><img alt="layout3" src="{% static 'images/layout3.png' %}"></label>
+			<input name="layoutselect" type="radio" value="4" id="dialog4" class="dialogimages" ><label for="dialog4"><img alt="layout4" src="{% static 'images/layout4.png' %}"></label>
+		</div>
+		<div id="uploadpic" title="Add image url">
+			<input type="text" id="picurl" name="picurl" placeholder="http://">
 		</div>
 	</body>
 </html>

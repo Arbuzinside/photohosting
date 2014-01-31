@@ -23,8 +23,9 @@ div.albumcontrollers
 	position: relative;
 	top: -80px;
 	background-color: grey;
-	opacity: 0.9;
+	opacity: 0.8;
 	height: 76px;
+	cursor: default;
 }
 
 button.albumbutton
@@ -37,7 +38,7 @@ button.albumbutton
 p.albumcap
 {
 	clear: both;
-	width: 100%;
+	width: 95%;
 	font-weight: bold;
 	font-size: 110%;
 	opacity: 1;

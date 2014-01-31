@@ -2,11 +2,10 @@
 <div id="header">	
 	<div id="title"><a href="{% url 'PhotoAlbum.views.home' %}">PhotoSite</a></div>
 	<ul id="optionslist">
-		<li><a href="">Albums</a> </li>		<!--TODO href with python-->
+		<li><a href="{% url 'PhotoAlbum.views.home' %}">Albums</a> </li>		<!--TODO href with python-->
 		<li><a href="">Explore</a> </li>
-		<li>{ User }
+		<li>{ User } <span>&#9660;</span>
 			<ul>
-				<li>&#9660;</li>
 				<li><a href="">Settings</a></li>
 				<li><a href="">Logout</a></li>
 			</ul>

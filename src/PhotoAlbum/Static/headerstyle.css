@@ -69,12 +69,16 @@
 
 #optionslist li:hover ul li:first-child
 {
-	font-size: 50%;
-	cursor: default;
+	margin-top: 20px;
 }
 
 #optionslist li:hover ul li
 {
 	width: 100%;
 	padding: 10px 0 5px 10px;
+}
+
+li span
+{
+	font-size: 60%;
 }

@@ -15,10 +15,10 @@
 		<div id="albums">
 			<h1>All albums</h1>
 			<div id="albumcontainer">
-				<a id="createnew" href="{% url 'PhotoAlbum.views.edit' %}">
-					<img alt="createnew" src="{% static 'images/newalbumicon.png' %}"/>
-					Create new album
-				</a>
+				<form id="createnewalbum" method="POST" action="{% url 'PhotoAlbum.views.edit' %}">{% csrf_token %}
+					<input type="image" src="{% static 'images/newalbumicon.png' %}">
+					<p>Add new album</p>
+				</form>
 				{% for a in album %}
 					{% include "album.html" with actalbum=a %}
 				{% endfor %}
