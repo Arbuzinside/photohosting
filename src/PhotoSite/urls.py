@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^picture/$', 'PhotoAlbum.views.show_picture', name='show_picture'),
     url(r'^home/$', 'PhotoAlbum.views.home', name='home'),
     url(r'^home/edit/$', 'PhotoAlbum.views.edit', name='edit'),
+    url(r'^delete/(?P<albumid>\d+)/$', 'PhotoAlbum.views.delete', name='delete'),
     url(r'^$', 'PhotoAlbum.views.index', name='index'),
 )
