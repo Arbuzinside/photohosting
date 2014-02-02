@@ -1,4 +1,4 @@
-#toppanel, #bottompanel, #allpanel, #leftpanel, #rightpanel
+.imageholder
 {
 	height: 47%;
 	background-image: url('/Static/images/newimage.png');
@@ -10,33 +10,33 @@
 	cursor: pointer;
 }
 
-#toppanel:hover, #bottompanel:hover, #allpanel:hover, #leftpanel:hover, #rightpanel:hover 
+.imageholder:hover 
 {
 	border: 1px solid darkmagenta;
 }
 
-#toppanel, #bottompanel, #allpanel
+#toppanel0, #bottompanel0, #allpanel0, #toppanel1, #bottompanel1, #allpanel1
 {
 	clear: both;
 	width: 95%;
 }
 
-#leftpanel, #rightpanel
+#leftpanel0, #rightpanel0, #leftpanel1, #rightpanel1
 {
 	width: 44%;
 }
 
-#leftpanel
+#leftpanel0, #leftpanel1
 {
 	float: left;
 }
 
-#rightpanel
+#rightpanel0, #rightpanel1
 {
 	float: right;
 }
 
-#allpanel
+#allpanel0, #allpanel1
 {
 	height: 95%;
 }

@@ -24,8 +24,10 @@ $(document).ready(function() {
 		buttons: {
 			Select: function() {
 				var index = $('input[name=layoutselect]:checked').val();
-				applylayout(index);
-				$(this).dialog( "close" ); 
+				if (index) {
+					applylayout(index);
+					$(this).dialog( "close" );
+				} 
 			}
 		}
 	});
@@ -38,8 +40,11 @@ $(document).ready(function() {
 		buttons: {
 			Select: function() {
 				var url = $('input[name=picurl]').val();
-				uploadimage(url);
-				$(this).dialog( "close" ); 
+				var cap = $('input[name=piccaption]').val();
+				if (url && cap) {
+					uploadimage(url, cap);
+					$(this).dialog( "close" ); 
+				}
 			}
 		}
 	});
@@ -55,44 +60,70 @@ function applylayout(index) // index: selected layout index
 	
 	if (index == 1) {
 		$("#" + pagetoload).html(
-			'<div id="allpanel" class="imageholder"></div> '
+			'<div id="allpanel'+ page +'" class="imageholder"></div> '
 		);
 	}
 	else if (index == 2) {
 		$("#" + pagetoload).html(
-			'<div id="toppanel" class="imageholder"></div> \
-			<div id="bottompanel" class="imageholder"></div> '
+			'<div id="toppanel'+ page +'" class="imageholder"></div> \
+			<div id="bottompanel'+ page +'" class="imageholder"></div> '
 		);
 	}
 	else if (index == 3) {
 		$("#" + pagetoload).html(
-			'<div id="leftpanel" class="imageholder"></div> \
-			<div id="rightpanel" class="imageholder"></div> \
-			<div id="toppanel" class="imageholder"></div> '
+			'<div id="leftpanel'+ page +'" class="imageholder"></div> \
+			<div id="rightpanel'+ page +'" class="imageholder"></div> \
+			<div id="toppanel'+ page +'" class="imageholder"></div> '
 		);
 	}
 	else if (index == 4) {
 		$("#" + pagetoload).html(
-			'<div id="toppanel" class="imageholder"></div> \
-			<div id="leftpanel" class="imageholder"></div> \
-			<div id="rightpanel" class="imageholder"></div>'
+			'<div id="toppanel'+ page +'" class="imageholder"></div> \
+			<div id="leftpanel'+ page +'" class="imageholder"></div> \
+			<div id="rightpanel'+ page +'" class="imageholder"></div>'
 		);
 	}
 	
 	$(".imageholder").click(function (event) {
 		imageplace = event.target.id;
-		page = $("#" + imageplace).parent().attr('id') == "leftpage" ? 0 : 1;
+		page = imageplace[imageplace.length - 1];
 		
-		$('input[name=picurl]').val('');	// clear url textbox
+		$('input[name=picurl]').val('');	// clear textboxes
+		$('input[name=piccaption]').val('');
 		$('#uploadpic').dialog("open");		// pops up dialog to enter picture url
 	});
 }
 
-function uploadimage (url) {				// display picture
+function uploadimage (url, cap) {				// display picture: url and caption
 	side = page == 0 ? "leftpage" : "rightpage";
 	$("#" + side).find("#" + imageplace).html(
-		'<img alt="' + url + '" src="' + url + '" >'
+		'<figure> \
+			<img alt="' + url + '" src="' + url + '" > \
+			<figcaption>'+ cap +'</figcaption> \
+		</figure>'
 	);
 	$("#" + side).find("#" + imageplace).css("background-image", "none");
+}
+
+function deletelayout(num)
+{
+	page = num;
+	side = page == 0 ? "leftpage" : "rightpage";
+	$("#" + side).html("");
+	$("#" + side).css("background-image", "url('/Static/images/layout.png')");
+	$("#" + side).css("cursor", "pointer");
+	
+	if (side == "leftpage") {
+		$("#leftpage").on("click", function () {
+			$('#dialog').dialog("open");
+			page = 0;
+		})
+	}
+	else {
+		$("#rightpage").on("click", function () {
+			$('#dialog').dialog("open");
+			page = 1;
+		})
+	}
 }
 	
