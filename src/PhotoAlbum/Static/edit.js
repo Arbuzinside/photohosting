@@ -1,22 +1,25 @@
-// Dialog window to add layouts
-var page; // 0 = leftpage, 1 = rightpage
-var imageplace;
+var page;		// 0 = leftpage, 1 = rightpage
+var imageplace;	// current picture
+var pagecount;  // how many pages we have added to the album (total - 2)
+var layouts;	// layouts array
+var images;
+var currentpage;	// current displayed page
 
 $(document).ready(function() {
-
-	// Add layout to the left page
-	$('#leftpage').on("click", function () {
-        $('#dialog').dialog("open");
-		page = 0;	
-    });
+	//Initialize
+	pagecount = currentpage = 0;
+	layouts = new Array();
+	layouts[0] = layouts[1] = 0;
 	
-	// Add layout to the right page
-	$('#rightpage').on("click", function () {
-        $('#dialog').dialog("open");
-		page = 1;	
-    });
+	images = new Array();
+	images[pagecount] = new Array();
+	images[pagecount + 1] = new Array();
 	
-	$("#dialog").dialog({
+	initpage(0);
+	initpage(1);
+	
+	//Setup dialog windows
+	$("#selectlayout").dialog({
 		autoOpen: false,
 		resizable: false,
 		width: 600,
@@ -40,15 +43,45 @@ $(document).ready(function() {
 		buttons: {
 			Select: function() {
 				var url = $('input[name=picurl]').val();
-				var cap = $('input[name=piccaption]').val();
-				if (url && cap) {
-					uploadimage(url, cap);
+				var caption = $('input[name=piccaption]').val();
+				if (url && caption) {
+					uploadimage(url, caption);
 					$(this).dialog( "close" ); 
 				}
 			}
 		}
 	});
+	
+	// display page count
+	$("#pagecounter").html("<p>< " + (currentpage / 2 + 1) + " / " + (pagecount / 2 + 1) + " ></p>");
 });
+
+function initpage(index) { // index 0 = left, 1 = right
+	if (index == 0)	{
+		$("#leftpage").html("");
+		$("#leftpage").css("background-image", "url('/Static/images/layout.png')");
+		$("#leftpage").css("cursor", "pointer");
+		
+		// Add layout to the left page
+		$('#leftpage').on("click", function () {
+			$('input[name=layoutselect]').removeAttr("checked");
+			$('#selectlayout').dialog("open");
+			page = 0;	
+		});
+	}
+	else {
+	// Add layout to the right page
+		$("#rightpage").html("");
+		$("#rightpage").css("background-image", "url('/Static/images/layout.png')");
+		$("#rightpage").css("cursor", "pointer");
+		
+		$('#rightpage').on("click", function () {
+			$('input[name=layoutselect]').removeAttr("checked");
+			$('#selectlayout').dialog("open");
+			page = 1;	
+		});
+	}
+}
 
 function applylayout(index) // index: selected layout index
 {
@@ -84,8 +117,17 @@ function applylayout(index) // index: selected layout index
 		);
 	}
 	
+	// Save layout
+	// console.log("layouts");
+	layouts[page + currentpage] = index;
+	/*for (i = 0; i < layouts.length; ++i) {
+		console.log(layouts[i]);
+	}*/
+	
+	// Create click function for the images
 	$(".imageholder").click(function (event) {
-		imageplace = event.target.id;
+		imageplace = $(event.target).closest("div").attr("id");
+		// get the last character of the id
 		page = imageplace[imageplace.length - 1];
 		
 		$('input[name=picurl]').val('');	// clear textboxes
@@ -94,36 +136,161 @@ function applylayout(index) // index: selected layout index
 	});
 }
 
-function uploadimage (url, cap) {				// display picture: url and caption
+function uploadimage (url, caption) {				// display picture: url and caption
 	side = page == 0 ? "leftpage" : "rightpage";
 	$("#" + side).find("#" + imageplace).html(
 		'<figure> \
 			<img alt="' + url + '" src="' + url + '" > \
-			<figcaption>'+ cap +'</figcaption> \
+			<figcaption>'+ caption +'</figcaption> \
 		</figure>'
 	);
 	$("#" + side).find("#" + imageplace).css("background-image", "none");
 }
 
-function deletelayout(num)
-{
-	page = num;
-	side = page == 0 ? "leftpage" : "rightpage";
-	$("#" + side).html("");
-	$("#" + side).css("background-image", "url('/Static/images/layout.png')");
-	$("#" + side).css("cursor", "pointer");
+function deletelayout(index) { // index 0 = left, 1 = right
+	side = index == 0 ? "leftpage" : "rightpage";
 	
-	if (side == "leftpage") {
-		$("#leftpage").on("click", function () {
-			$('#dialog').dialog("open");
-			page = 0;
-		})
+	if (confirm("Are you sure you want to delete the layout?")) {	
+		$("#" + side).html("");
+		$("#" + side).css("background-image", "url('/Static/images/layout.png')");
+		$("#" + side).css("cursor", "pointer");
+		
+		initpage(index);
+		
+		// reset layouts array
+		layouts[index + currentpage] = 0;
 	}
-	else {
-		$("#rightpage").on("click", function () {
-			$('#dialog').dialog("open");
-			page = 1;
-		})
+}
+
+function newpage() {	
+	savepages();
+	
+	pagecount += 2;
+	currentpage = pagecount;
+	images[pagecount] = new Array();
+	images[pagecount + 1] = new Array();
+	
+	/*
+	for (i = 0; i < images.length; ++i)
+		for (j = 0; j < images[i].length; ++j) {
+			console.log(images[i][j].src);
+		}*/
+	
+	layouts[pagecount] = 0;
+	layouts[pagecount + 1] = 0;
+	
+	/*
+	console.log("layouts");
+	for (i = 0; i < layouts.length; ++i)
+		console.log(layouts[i]);*/
+	
+	initpage(0);
+	initpage(1);
+	
+	$("#leftmove").css("display", "block");
+	
+	$("#pagecounter").html("<p>< " + (currentpage / 2 + 1) + " / " + (pagecount / 2 + 1) + " ></p>");
+}
+
+function savepages() {	
+	$("#leftpage div").each(function( index ) {
+		//console.log( index + ": " + $(this).find("figcaption").html() );
+		images[currentpage][index] = {'src': $(this).find("img").attr("src"), 'caption': $(this).find("figcaption").html() };
+	});
+	
+	$("#rightpage div").each(function( index ) {
+		//console.log( index + ": " + $(this).find("figcaption").html() );
+		images[currentpage + 1][index] = {'src': $(this).find("img").attr("src"), 'caption': $(this).find("figcaption").html() };
+	});
+}
+
+function savealbum() {
+	// title validation
+	
+	savepages();
+	return true;
+}
+
+function moveleft() {
+	savepages();
+	
+	currentpage -= 2;
+	
+	console.log("currentpage: " + currentpage + ", " + "pagecount: " + pagecount);
+	
+	if (currentpage == 0) {
+		$("#leftmove").css("display", "none");
 	}
+	
+	$("#addpage").css("display", "none");
+	$("#rightmove").css("display", "block");
+	
+	displaypages();
+	
+	$("#pagecounter").html("<p>< " + (currentpage / 2 + 1) + " / " + (pagecount / 2 + 1) + " ></p>");
+}
+
+function moveright() {
+	savepages();
+	
+	currentpage += 2;
+	
+	console.log("currentpage: " + currentpage + ", " + "pagecount: " + pagecount);
+	
+	if (currentpage == pagecount) {
+		$("#rightmove").css("display", "none");
+		$("#addpage").css("display", "block");
+	}
+	
+	$("#leftmove").css("display", "block");
+	
+	console.log("layouts");
+	for (i = 0; i < layouts.length; ++i)
+		console.log(layouts[i]);
+	
+	displaypages();
+	
+	$("#pagecounter").html("<p>< " + (currentpage / 2 + 1) + " / " + (pagecount / 2 + 1) + " ></p>");
+}
+
+function displaypages() {
+	page = 0;							// 0 = leftpage
+	
+	if (layouts[currentpage] != 0)
+		applylayout(layouts[currentpage]);
+	else
+		initpage(page);
+		
+	$("#leftpage div").each(function( index ) {
+		//console.log( index + ": " + $(this).find("figcaption").html() );
+		
+		if (images[currentpage][index].src) {
+			$(this).html(
+				'<figure> \
+					<img alt="' + images[currentpage][index].src + '" src="' + images[currentpage][index].src + '" > \
+					<figcaption>'+ images[currentpage][index].caption +'</figcaption> \
+				</figure>'
+			)
+		}
+	});
+	
+	page = 1;							// 1 = rightpage
+	
+	if (layouts[currentpage + 1] != 0)
+		applylayout(layouts[currentpage + 1]);
+	else
+		initpage(page);
+	
+	$("#rightpage div").each(function( index ) {
+		//console.log( index + ": " + $(this).find("figcaption").html() );
+		if (images[currentpage + 1][index].src) {
+			$(this).html(
+				'<figure> \
+					<img alt="' + images[currentpage + 1][index].src + '" src="' + images[currentpage + 1][index].src + '" > \
+					<figcaption>'+ images[currentpage + 1][index].caption +'</figcaption> \
+				</figure>'
+			)
+		}
+	});
 }
 	

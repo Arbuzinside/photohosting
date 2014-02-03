@@ -18,23 +18,24 @@
 			<form method="POST" action="{% url 'PhotoAlbum.views.home' %}">{% csrf_token %}
 				<label for="albumtitle">Title:</label>
 				<input id="albumtitle" name="title" type="text" placeholder="New Album"/>
-				<input id="savealbum" type="submit" value="Save Album">
+				<input id="savealbum" type="submit" value="Save Album" onsubmit="return savealbum()" >
 			</form>
 		</div>
 		<div id="albumcontent">
 			<div id="leftcontroller">
-				<img class="move" alt="back" src="{% static 'images/backicon.png' %}"/>
-				<img class="bottomicon" alt="deletelayout" onclick="deletelayout(0)" src="{% static 'images/deletelayout.png' %}" />
+				<img class="move" id="leftmove" alt="back" src="{% static 'images/backicon.png' %}" onclick="moveleft()" />
+				<img class="deletelayout" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" onclick="deletelayout(0)" />
 			</div>
 			<div id="leftpage" ></div>
 			<div id="rightcontroller">
-				<img class="uppericon" alt="addpage" src="{% static 'images/addpage.png' %}" />
-				<img class="move" alt="back" src="{% static 'images/nexticon.png' %}"/>
-				<img class="bottomicon" alt="deletelayout" onclick="deletelayout(1)" src="{% static 'images/deletelayout.png' %}" />
+				<img class="addpage" alt="addpage" id="addpage" src="{% static 'images/addpage.png' %}" onclick="newpage()" />
+				<img class="move" id="rightmove" alt="forward" src="{% static 'images/nexticon.png' %}" onclick="moveright()" />
+				<img class="deletelayout" alt="deletelayout" src="{% static 'images/deletelayout.png' %}" onclick="deletelayout(1)" />
 			</div>
 			<div id="rightpage" ></div>
 		</div>
-		<div id="dialog" title="Select a layout">
+		<div id="pagecounter"></div>
+		<div id="selectlayout" title="Select a layout">
 			<input name="layoutselect" type="radio" value="1" id="dialog1" class="dialogimages" ><label for="dialog1"><img alt="layout1" src="{% static 'images/layout1.png' %}"></label>
 			<input name="layoutselect" type="radio" value="2" id="dialog2" class="dialogimages" ><label for="dialog2"><img alt="layout2" src="{% static 'images/layout2.png' %}"></label>
 			<input name="layoutselect" type="radio" value="3" id="dialog3" class="dialogimages" ><label for="dialog3"><img alt="layout3" src="{% static 'images/layout3.png' %}"></label>
