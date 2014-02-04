@@ -194,21 +194,46 @@ function newpage() {
 
 function savepages() {	
 	$("#leftpage div").each(function( index ) {
-		//console.log( index + ": " + $(this).find("figcaption").html() );
-		images[currentpage][index] = {'src': $(this).find("img").attr("src"), 'caption': $(this).find("figcaption").html() };
+		//console.log( index + ": " + $(this).find("figcaption").html() );		
+		if ($(this).find("img").attr("src") != null)
+			images[currentpage][index] = {'src': $(this).find("img").attr("src"), 'caption': $(this).find("figcaption").html() };
+		else
+			images[currentpage][index] = {'src': "", 'caption': ""};
 	});
 	
 	$("#rightpage div").each(function( index ) {
 		//console.log( index + ": " + $(this).find("figcaption").html() );
-		images[currentpage + 1][index] = {'src': $(this).find("img").attr("src"), 'caption': $(this).find("figcaption").html() };
+		if ($(this).find("img").attr("src") != null)
+			images[currentpage + 1][index] = {'src': $(this).find("img").attr("src"), 'caption': $(this).find("figcaption").html() };
+		else
+			images[currentpage + 1][index] = {'src': "", 'caption': ""};
 	});
+	
+	console.log("images");
+	for (i = 0; i < images.length; ++i)
+		for (j = 0; j < images[i].length; ++j) {
+			console.log(images[i][j].src);
+		}
 }
 
-function savealbum() {
+function save_album() {
 	// title validation
 	
-	savepages();
-	return true;
+	if ($("#albumtitle").val() == "") {
+		alert("Please add a title to your album!");
+		return false;
+	}
+	else {	
+		savepages();
+		
+		var jsonlayouts = JSON.stringify(layouts);
+		$("#layouts").val(jsonlayouts);
+		
+		var jsonimages = JSON.stringify(images);
+		$("#images").val(jsonimages);
+		
+		return true;
+	}
 }
 
 function moveleft() {
@@ -264,7 +289,7 @@ function displaypages() {
 	$("#leftpage div").each(function( index ) {
 		//console.log( index + ": " + $(this).find("figcaption").html() );
 		
-		if (images[currentpage][index].src) {
+		if (images[currentpage][index].src != '') {
 			$(this).html(
 				'<figure> \
 					<img alt="' + images[currentpage][index].src + '" src="' + images[currentpage][index].src + '" > \
@@ -283,7 +308,7 @@ function displaypages() {
 	
 	$("#rightpage div").each(function( index ) {
 		//console.log( index + ": " + $(this).find("figcaption").html() );
-		if (images[currentpage + 1][index].src) {
+		if (images[currentpage + 1][index].src != '') {
 			$(this).html(
 				'<figure> \
 					<img alt="' + images[currentpage + 1][index].src + '" src="' + images[currentpage + 1][index].src + '" > \
