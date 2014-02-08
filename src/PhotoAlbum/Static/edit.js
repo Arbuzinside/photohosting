@@ -3,6 +3,7 @@ var imageplace;	// current picture
 var pagecount;  // how many pages we have added to the album (total - 2)
 var layouts;	// layouts array
 var images;
+var jsonlayouts, jsonimages; // json variables to receive django data
 var currentpage;	// current displayed page
 
 $(document).ready(function() {
@@ -52,11 +53,14 @@ $(document).ready(function() {
 		}
 	});
 	
+	if (jsonlayouts)
+		loadalbum();
+	
 	// display page count
 	$("#pagecounter").html("<p>< " + (currentpage / 2 + 1) + " / " + (pagecount / 2 + 1) + " ></p>");
 });
 
-function initpage(index) { // index 0 = left, 1 = right
+function initpage(index) {				// index 0 = left, 1 = right
 	if (index == 0)	{
 		$("#leftpage").html("");
 		$("#leftpage").css("background-image", "url('/Static/images/layout.png')");
@@ -83,8 +87,7 @@ function initpage(index) { // index 0 = left, 1 = right
 	}
 }
 
-function applylayout(index) // index: selected layout index
-{
+function applylayout(index) {			// index: selected layout index
 	var pagetoload = page == 0 ? "leftpage" : "rightpage";
 	$("#" + pagetoload).off();
 	$("#" + pagetoload).hover().css("border", "1px dashed #333333");
@@ -120,6 +123,7 @@ function applylayout(index) // index: selected layout index
 	// Save layout
 	// console.log("layouts");
 	layouts[page + currentpage] = index;
+
 	/*for (i = 0; i < layouts.length; ++i) {
 		console.log(layouts[i]);
 	}*/
@@ -136,7 +140,7 @@ function applylayout(index) // index: selected layout index
 	});
 }
 
-function uploadimage (url, caption) {				// display picture: url and caption
+function uploadimage (url, caption) {	// display picture: url and caption
 	side = page == 0 ? "leftpage" : "rightpage";
 	$("#" + side).find("#" + imageplace).html(
 		'<figure> \
@@ -147,7 +151,7 @@ function uploadimage (url, caption) {				// display picture: url and caption
 	$("#" + side).find("#" + imageplace).css("background-image", "none");
 }
 
-function deletelayout(index) { // index 0 = left, 1 = right
+function deletelayout(index) {			// index 0 = left, 1 = right
 	side = index == 0 ? "leftpage" : "rightpage";
 	
 	if (confirm("Are you sure you want to delete the layout?")) {	
@@ -159,6 +163,7 @@ function deletelayout(index) { // index 0 = left, 1 = right
 		
 		// reset layouts array
 		layouts[index + currentpage] = 0;
+		images[index + currentpage] = new Array();
 	}
 }
 
@@ -167,22 +172,12 @@ function newpage() {
 	
 	pagecount += 2;
 	currentpage = pagecount;
-	images[pagecount] = new Array();
-	images[pagecount + 1] = new Array();
-	
-	/*
-	for (i = 0; i < images.length; ++i)
-		for (j = 0; j < images[i].length; ++j) {
-			console.log(images[i][j].src);
-		}*/
 	
 	layouts[pagecount] = 0;
 	layouts[pagecount + 1] = 0;
 	
-	/*
-	console.log("layouts");
-	for (i = 0; i < layouts.length; ++i)
-		console.log(layouts[i]);*/
+	images[pagecount] = new Array();
+	images[pagecount + 1] = new Array();
 	
 	initpage(0);
 	initpage(1);
@@ -192,7 +187,7 @@ function newpage() {
 	$("#pagecounter").html("<p>< " + (currentpage / 2 + 1) + " / " + (pagecount / 2 + 1) + " ></p>");
 }
 
-function savepages() {	
+function savepages() {			
 	$("#leftpage div").each(function( index ) {
 		//console.log( index + ": " + $(this).find("figcaption").html() );		
 		if ($(this).find("img").attr("src") != null)
@@ -209,7 +204,7 @@ function savepages() {
 			images[currentpage + 1][index] = {'src': "", 'caption': ""};
 	});
 	
-	console.log("images");
+	console.log("save images");
 	for (i = 0; i < images.length; ++i)
 		for (j = 0; j < images[i].length; ++j) {
 			console.log(images[i][j].src);
@@ -317,5 +312,54 @@ function displaypages() {
 			)
 		}
 	});
+}
+
+function loadalbum() {
+	var i = 0;
+	for (var key in jsonlayouts) {
+		layouts[i] = jsonlayouts[key];
+		images[i] = new Array();
+		++i;
+	}
+	
+	pagecount = layouts.length / 2 + 1;
+	if (pagecount > 1) {
+		$("#addpage").css("display", "none");
+			$("#rightmove").css("display", "block");
+	}
+	
+	i = 0;
+	var imgcount = 0;	// number of pictures on the page
+	for (var key in jsonimages) {
+		while (layouts[i] == 0)
+			++i;
+		
+		images[i][imgcount] = {'src' : jsonimages[key].source, 'caption' : jsonimages[key].title}
+		
+		// layouts array contains the number of images of the page, except:
+			// on layout 4 we have 3 image places
+			// on layout 0 we have no images 
+		if (imgcount == layouts[i] - 1 || layouts[i] == 0 || (layouts[i] == 4 && imgcount == 2)) {
+			++i;			
+			imgcount = 0;
+		}
+		else {	
+			++imgcount;
+		}
+	}
+	
+	for (i = 0; i < layouts.length; ++i) {
+			console.log(layouts[i]);
+		}
+	
+	console.log("images");
+	for (i = 0; i < images.length; ++i) {
+		console.log(i)
+		for (j = 0; j < images[i].length; ++j) {
+			console.log(images[i][j].src);
+		}
+	}
+		
+	displaypages();
 }
 	

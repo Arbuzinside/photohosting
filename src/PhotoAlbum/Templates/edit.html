@@ -11,16 +11,23 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		<script src="{% static 'edit.js' %}"></script>
+		<script>
+			{% if album %}
+				jsonlayouts = {{layouts|safe}};
+				jsonimages = {{images|safe}};
+			{% endif %}
+		</script>
 	</head>
 	<body>
 		{% include "header.html" %}
 		<div id="titlecontainer">
 			<form method="POST" action="{% url 'PhotoAlbum.views.save' %}" onsubmit="return save_album()">{% csrf_token %}
 				<label for="albumtitle">Title:</label>
-				<input id="albumtitle" name="title" type="text" placeholder="New Album"/>
+				<input id="albumtitle" name="title" type="text" placeholder="New Album" value="{{album.title}}"/>
 				<input id="savealbum" type="submit" value="Save Album" />
 				<input type="hidden" id="layouts" name="layouts" />
 				<input type="hidden" id="images" name="images" value="" />
+				<input type="hidden" id="albumid" name="albumid" value="{{album.id}}" />
 			</form>
 		</div>
 		<div id="albumcontent">
