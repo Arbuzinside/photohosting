@@ -1,0 +1,39 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create your photoalbum!</title>
+		<link rel="stylesheet" href="{% static 'editstyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'layoutstyle.css' %}" type="text/css" />
+		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/vader/jquery-ui.css" rel="stylesheet">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<script src="{% static 'edit.js' %}"></script>
+		<script>
+			{% if album %}
+				jsonlayouts = {{layouts|safe}};
+				jsonimages = {{images|safe}};
+			{% endif %}
+		</script>
+	</head>
+	<body>
+		{% include "header.html" %}
+		<div id="titlecontainer">
+			<label for="albumtitle">Title:</label>
+			<input id="albumtitle" name="title" type="text" placeholder="New Album" value="{{album.title}}" disabled="true"/>
+		</div>
+		<div id="albumcontent">
+			<div id="leftcontroller">
+				<img class="move" id="leftmove" alt="back" src="{% static 'images/backicon.png' %}" onclick="moveleft()" />
+			</div>
+			<div id="leftpage" ></div>
+			<div id="rightcontroller">
+				<img class="move" id="rightmove" alt="forward" src="{% static 'images/nexticon.png' %}" onclick="moveright()" />
+			</div>
+			<div id="rightpage" ></div>
+		</div>
+		<div id="pagecounter"></div>
+	</body>
+</html>

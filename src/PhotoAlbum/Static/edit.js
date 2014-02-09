@@ -291,6 +291,7 @@ function displaypages() {
 					<figcaption>'+ images[currentpage][index].caption +'</figcaption> \
 				</figure>'
 			)
+			$(this).css("background-image", "none");
 		}
 	});
 	
@@ -310,6 +311,7 @@ function displaypages() {
 					<figcaption>'+ images[currentpage + 1][index].caption +'</figcaption> \
 				</figure>'
 			)
+			$(this).css("background-image", "none");
 		}
 	});
 }
@@ -322,7 +324,7 @@ function loadalbum() {
 		++i;
 	}
 	
-	pagecount = layouts.length / 2 + 1;
+	pagecount = layouts.length - 2;
 	if (pagecount > 1) {
 		$("#addpage").css("display", "none");
 			$("#rightmove").css("display", "block");
