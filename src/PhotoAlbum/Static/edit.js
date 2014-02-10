@@ -49,6 +49,8 @@ $(document).ready(function() {
 					uploadimage(url, caption);
 					$(this).dialog( "close" ); 
 				}
+				else
+					alert("The fields are required!");
 			}
 		}
 	});
@@ -134,9 +136,24 @@ function applylayout(index) {			// index: selected layout index
 		// get the last character of the id
 		page = imageplace[imageplace.length - 1];
 		
-		$('input[name=picurl]').val('');	// clear textboxes
-		$('input[name=piccaption]').val('');
-		$('#uploadpic').dialog("open");		// pops up dialog to enter picture url
+		// if an image is already there
+		url = null;
+		if ($(this).find("img").attr("src") != null)
+			url = $(this).find("img").attr("src");
+			caption = $(this).find("figcaption");
+			console.log("caption" + caption.html());
+		if (url) {
+			// load the image data
+			$('input[name=picurl]').val(url);
+			$('input[name=piccaption]').val(caption.html());
+		}
+		else {
+			// clear textboxes
+			$('input[name=picurl]').val('');	
+			$('input[name=piccaption]').val('');
+		}
+		// open the dialog to enter picture url
+		$('#uploadpic').dialog("open");		
 	});
 }
 
