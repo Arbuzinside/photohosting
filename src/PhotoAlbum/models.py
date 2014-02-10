@@ -9,7 +9,7 @@ class Album(models.Model):
     date = models.DateTimeField()
     link = models.URLField()
     cover = models.URLField()
-    'Owner = models.ForeignKey()'
+    owner = models.ForeignKey(User, related_name="albums")
 
 class AlbumForm(ModelForm):
     class Meta:
@@ -18,12 +18,12 @@ class AlbumForm(ModelForm):
 
 class Page(models.Model):
     layout = models.IntegerField()
-    containingAlbum = models.ForeignKey(Album, related_name="Pages")
+    containingAlbum = models.ForeignKey(Album, related_name="pages")
     
 class Picture(models.Model):
     title = models.CharField(max_length = 255)
     source = models.URLField()
-    containingPage = models.ForeignKey(Page, related_name="Pictures")
+    containingPage = models.ForeignKey(Page, related_name="pictures")
 
 class MyRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -33,11 +33,9 @@ class MyRegistrationForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
         
     def save(self, commit = True):
-        user = super(UserCreationForm, self).save(commit=False)
+        user = super(MyRegistrationForm, self).save(commit=False)
         user.email = self.cleaned_data['email']
-        
         if commit:
-            User.objects.create_user(user.username, user.email, user.password)
-            #user.save()
+            user.save()
             
         return user

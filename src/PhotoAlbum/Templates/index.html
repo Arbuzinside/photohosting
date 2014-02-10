@@ -11,8 +11,41 @@
 	<body>
 		<div id="header">	
 			<div id="title">PhotoSite</div>
-			{% include 'login.html' %}
+			
+			{% if form.errors %} 
+         		<p class="error"> Sorry, username or password isn't valid </p>
+     		{% endif %}
+     
+    		<form method="POST" action="{% url 'PhotoAlbum.views.login' %}"> {% csrf_token %}
+				<table id="logintable">
+					<tr>
+						<td> <label for="loginname">Username</label> </td>
+						<td> <label for="loginpasswd">Password</label> </td>
+						<td> </td>
+					</tr>
+					<tr>
+						<td> <input id="loginname" name="loginname" type="text"> </td>
+						<td> <input id="loginpasswd" name="loginpasswd" type="password"> </td>
+						<td> <input type="submit" value="Sign In" class="button"> </td>
+					</tr>
+					<tr>
+						<td> <input type="checkbox" id="keep"> <label for="keep">Keep me logged in</label> </td>
+						<td> <a href="">Forgot password</a> </td>
+						<td> </td>
+					</tr>
+				</table>
+			</form>
 		</div>
+		{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+						{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+						{{ message }}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
 		<h1>Welcome to our website!</h1>
 		<div id="featured">
 			<h2>Featured Albums</h2>	<!--TODO featured albums: slideshow/mozaik-->
@@ -22,6 +55,13 @@
 				<div><img class="show" alt="pic3" src="{% static 'Slider/images/cat3.png' %}" /></div>
 			</div>
 		</div>
-		{% include 'register.html' %}
+		
+		<div id="reg">					<!--TODO validatation-->
+			<form method="POST" action="{% url 'PhotoAlbum.views.register_user' %}"> {% csrf_token %}
+				<h2>Sign Up</h2>
+				{{ form }}
+				<input type="submit" value="Sign Up">
+			</form>
+		</div>
 	</body>
 </html>
