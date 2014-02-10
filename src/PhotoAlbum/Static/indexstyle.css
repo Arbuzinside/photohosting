@@ -15,6 +15,7 @@ body
 	height: 500px;
 	margin: auto;
 	padding-left: 10px;
+	position: relative;
 }
 
 input[type="submit"]
@@ -89,6 +90,7 @@ h1
 	box-shadow: 5px 5px 5px #888888;
 	width: 60%;
 	height: 375px;
+	position: relative;
 }
 
 .banner 
@@ -110,7 +112,7 @@ h1
 { 
 	list-style: none; 
 	margin: 0;
-	width: 100%;
+	size: 100%;
 }
         
 .banner ul li 
@@ -118,6 +120,11 @@ h1
 	float: left; 
 	margin: 0;
 	size: 100%;
+}
+
+.banner ul li img
+{
+	height: 100%;
 }
 
 #reg
@@ -162,4 +169,14 @@ h1
 	font-weight: bold;
 	text-align: right;
 	float: right;
+}
+
+.successmsg, .messages
+{
+	margin: 10px 0 0 0;
+	padding: 0;
+	list-style: none;
+	font-weight: bold;
+	font-size: 120%;
+	color: darkmagenta;
 }
