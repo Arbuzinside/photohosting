@@ -27,11 +27,16 @@ input[type="submit"]
 
 #title
 {
+	float: left;
+	padding-top: 20px;
+}
+
+#title a
+{
 	font-size: 200%;
 	font-weight: bold; 
 	color: magenta;
-	float: left;
-	padding-top: 20px;
+	text-decoration: none;
 }
 
 #logintable
@@ -134,10 +139,21 @@ h2
 {
 	width: 130px;
 	height: 45px;
-	margin-top: 65px;
+	margin-top: 50px;
 	background-color: darkmagenta;
 	border-color: darkmagenta;
 	color: white;
 	font-weight: bold;
 	font-size: 120%;
+}
+
+.errorlist, .errormsg
+{
+	margin: 0 32px 0 0;
+	padding: 0;
+	list-style: none;
+	color: red;
+	font-weight: bold;
+	text-align: right;
+	float: right;
 }

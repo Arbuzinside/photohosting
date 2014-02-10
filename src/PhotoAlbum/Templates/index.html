@@ -10,12 +10,7 @@
 	</head>
 	<body>
 		<div id="header">	
-			<div id="title">PhotoSite</div>
-			
-			{% if form.errors %} 
-         		<p class="error"> Sorry, username or password isn't valid </p>
-     		{% endif %}
-     
+			<div id="title"><a href="{% url 'PhotoAlbum.views.index' %}">PhotoSite</a></div>
     		<form method="POST" action="{% url 'PhotoAlbum.views.login' %}"> {% csrf_token %}
 				<table id="logintable">
 					<tr>
@@ -36,16 +31,6 @@
 				</table>
 			</form>
 		</div>
-		{% if messages %}
-			<ul class="messages">
-				{% for message in messages %}
-					<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-						{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-						{{ message }}
-					</li>
-				{% endfor %}
-			</ul>
-		{% endif %}
 		<h1>Welcome to our website!</h1>
 		<div id="featured">
 			<h2>Featured Albums</h2>	<!--TODO featured albums: slideshow/mozaik-->
@@ -62,6 +47,15 @@
 				{{ form }}
 				<input type="submit" value="Sign Up">
 			</form>
+			{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+				<li{% if message.tags %} class="errormsg"{% endif %}>
+					{{ message }}
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
 		</div>
 	</body>
 </html>

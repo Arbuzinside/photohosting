@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core import validators
 
 class Album(models.Model):
     title = models.CharField(max_length = 255)
@@ -26,7 +27,10 @@ class Picture(models.Model):
     containingPage = models.ForeignKey(Page, related_name="pictures")
 
 class MyRegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField()
+    username = forms.CharField(min_length=5, max_length=50)
+    password1 = forms.PasswordInput()
+    password2 = forms.PasswordInput()
     
     class Meta:
         model = User
@@ -34,7 +38,8 @@ class MyRegistrationForm(UserCreationForm):
         
     def save(self, commit = True):
         user = super(MyRegistrationForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
+        cleaned_data = super(MyRegistrationForm, self).clean()
+        
         if commit:
             user.save()
             

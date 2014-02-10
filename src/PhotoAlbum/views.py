@@ -20,9 +20,10 @@ def register_user(request):
         form = MyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,'Congratulations! You have registered successfully! Now you can log in.')
             return HttpResponseRedirect('/')
-        #else:
-            #TODO: hiba
+        else:
+            return render_to_response("index.html", {'form': form}, context_instance=RequestContext(request))
 
 def login(request):
     name = request.POST.get('loginname', '')
@@ -44,7 +45,6 @@ def logout(request):
 # Main Methods
 
 def index(request):
-    messages.success(request,'Congratulations! You have registered successfully! Now you can log in.')
     form = MyRegistrationForm()
     return render_to_response("index.html", {'form': form}, context_instance=RequestContext(request))  
 
@@ -114,7 +114,10 @@ def save(request):
                 j += 1
             i += 1
         
-        album.cover = images[i - 1][j - 1]["src"]
+        if found:
+            album.cover = images[i - 1][j - 1]["src"]
+        else:
+            album.cover = "/Static/images/album.png"
             
         album.save()
         
