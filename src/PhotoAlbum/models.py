@@ -1,9 +1,7 @@
 from django.db import models
-from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.core import validators
 
 class Album(models.Model):
     title = models.CharField(max_length = 255)
@@ -11,11 +9,7 @@ class Album(models.Model):
     link = models.URLField()
     cover = models.URLField()
     owner = models.ForeignKey(User, related_name="albums")
-
-class AlbumForm(ModelForm):
-    class Meta:
-        model = Album
-        fields = ('title', )
+    public = models.BooleanField()
 
 class Page(models.Model):
     layout = models.IntegerField()

@@ -51,7 +51,6 @@ def index(request):
 @login_required(login_url='/')
 def home(request):
     albums = Album.objects.filter(owner = request.user)
-    print request.user
     return render_to_response("home.html", {'username' : request.user, 'album' : albums}, context_instance=RequestContext(request))
 
 @login_required(login_url='/')
@@ -118,7 +117,11 @@ def save(request):
             album.cover = images[i - 1][j - 1]["src"]
         else:
             album.cover = "/Static/images/album.png"
-            
+        
+        if (request.POST.get('public') == 'public'):
+            album.public = True
+        else:
+            album.public = False
         album.save()
         
         for i in range(0, len(layouts)):
@@ -132,19 +135,23 @@ def save(request):
 
 def view(request, albumlink):
     album = Album.objects.get(link = albumlink)
+    #print 'request.user ' + request.user
+    #print 'album.owner ' + album.owner
+    if (request.user == album.owner or album.public): #TODO: do it on the client side
+        lays = {}
+        imgs = {}
         
-    lays = {}
-    imgs = {}
+        for l in album.pages.all():
+            lays[l.id] = l.layout
+            for i in l.pictures.all():
+                imgs[i.id] = {"title" : i.title, "source" : i.source}
+            
+        layouts = simplejson.dumps(lays, indent = 4)
+        images = simplejson.dumps(imgs, indent = 4)
     
-    for l in album.pages.all():
-        lays[l.id] = l.layout
-        for i in l.pictures.all():
-            imgs[i.id] = {"title" : i.title, "source" : i.source}
-        
-    layouts = simplejson.dumps(lays, indent = 4)
-    images = simplejson.dumps(imgs, indent = 4)
-    
-    return render_to_response("view.html", {'album' : album, 'layouts' : layouts, 'images' : images, 'username': request.user}, context_instance=RequestContext(request))
+        return render_to_response("view.html", {'album' : album, 'layouts' : layouts, 'images' : images, 'username': request.user}, context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect('/')
 
 def explore(request):
     album = Album.objects.all()

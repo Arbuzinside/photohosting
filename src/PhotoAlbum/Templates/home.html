@@ -13,7 +13,7 @@
 	<body>
 		{% include "header.html" %}
 		<div id="albums">
-			<h1>All albums</h1>
+			<h1>Your albums</h1>
 			<div id="albumcontainer">
 				<form id="createnewalbum" method="POST" action="{% url 'PhotoAlbum.views.edit' %}">{% csrf_token %}
 					<input type="image" src="{% static 'images/newalbumicon.png' %}" alt="create new album">
