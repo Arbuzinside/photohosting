@@ -1,0 +1,11 @@
+{% load staticfiles %}
+
+{% block content %}
+<div class="album">
+	<a href="{% url 'PhotoAlbum.views.view' actalbum.link %}"><img id="album.{{actalbum.id}}" class="albumimg" alt="album{{actalbum.id}}" src="{{actalbum.cover}}"/></a>
+	<div id="contr.{{actalbum.id}}" class="albumcontrollers">
+		<p class="holder"></p>
+		<p class="albumcap">{{actalbum.title}}</p>
+	</div>
+</div>
+{% endblock %}

@@ -145,3 +145,7 @@ def view(request, albumlink):
     images = simplejson.dumps(imgs, indent = 4)
     
     return render_to_response("view.html", {'album' : album, 'layouts' : layouts, 'images' : images, 'username': request.user}, context_instance=RequestContext(request))
+
+def explore(request):
+    album = Album.objects.all()
+    return render_to_response("explore.html", {'album': album})

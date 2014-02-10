@@ -5,57 +5,62 @@
 	<head>
 		<title>Create your photoalbum!</title>
 		<link rel="stylesheet" href="{% static 'indexstyle.css' %}" type="text/css" >
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="//code.jquery.com/jquery-latest.min.js"></script>
+		<script src="//unslider.com/unslider.min.js"></script>
 		<script src="{% static 'Slider/slideshow.js' %}"></script>
 	</head>
 	<body>
-		<div id="header">	
-			<div id="title"><a href="{% url 'PhotoAlbum.views.index' %}">PhotoSite</a></div>
-    		<form method="POST" action="{% url 'PhotoAlbum.views.login' %}"> {% csrf_token %}
-				<table id="logintable">
-					<tr>
-						<td> <label for="loginname">Username</label> </td>
-						<td> <label for="loginpasswd">Password</label> </td>
-						<td> </td>
-					</tr>
-					<tr>
-						<td> <input id="loginname" name="loginname" type="text"> </td>
-						<td> <input id="loginpasswd" name="loginpasswd" type="password"> </td>
-						<td> <input type="submit" value="Sign In" class="button"> </td>
-					</tr>
-					<tr>
-						<td> <input type="checkbox" id="keep"> <label for="keep">Keep me logged in</label> </td>
-						<td> <a href="">Forgot password</a> </td>
-						<td> </td>
-					</tr>
-				</table>
-			</form>
-		</div>
-		<h1>Welcome to our website!</h1>
-		<div id="featured">
-			<h2>Featured Albums</h2>	<!--TODO featured albums: slideshow/mozaik-->
-			<div id="slideshow">
-				<div><img class="show" alt="pic1" src="{% static 'Slider/images/cat1.png' %}" /></div>
-				<div><img class="show" alt="pic2" src="{% static 'Slider/images/cat2.png' %}" /></div>
-				<div><img class="show" alt="pic3" src="{% static 'Slider/images/cat3.png' %}" /></div>
+		<div id="header">
+			<div class="content">
+				<div id="title"><a href="{% url 'PhotoAlbum.views.index' %}">PhotoSite</a></div>
+				<form method="POST" action="{% url 'PhotoAlbum.views.login' %}"> {% csrf_token %}
+					<table id="logintable">
+						<tr>
+							<td> <label for="loginname">Username</label> </td>
+							<td> <label for="loginpasswd">Password</label> </td>
+							<td> </td>
+						</tr>
+						<tr>
+							<td> <input id="loginname" name="loginname" type="text"> </td>
+							<td> <input id="loginpasswd" name="loginpasswd" type="password"> </td>
+							<td> <input type="submit" value="Sign In" class="button"> </td>
+						</tr>
+						<tr>
+							<td> <input type="checkbox" id="keep"> <label for="keep">Keep me logged in</label> </td>
+							<td> <a href="">Forgot password</a> </td>
+							<td> </td>
+						</tr>
+					</table>
+				</form>
 			</div>
 		</div>
-		
-		<div id="reg">					<!--TODO validatation-->
-			<form method="POST" action="{% url 'PhotoAlbum.views.register_user' %}"> {% csrf_token %}
-				<h2>Sign Up</h2>
-				{{ form }}
-				<input type="submit" value="Sign Up">
-			</form>
-			{% if messages %}
-			<ul class="messages">
-				{% for message in messages %}
-				<li{% if message.tags %} class="errormsg"{% endif %}>
-					{{ message }}
-				</li>
-				{% endfor %}
-			</ul>
-			{% endif %}
+		<div class="content">
+			<h1>Welcome to our website!</h1>
+			<div id="slideshow">
+				<div class="banner">
+					<ul>
+						<li><img src="{% static 'Slider/images/northern.png' %}" ></li>
+						<li><img src="{% static 'Slider/images/ny.png' %}" ></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div id="reg">					<!--TODO validatation-->
+				<form method="POST" action="{% url 'PhotoAlbum.views.register_user' %}"> {% csrf_token %}
+					<h2>Sign Up</h2>
+					{{ form }}
+					<input type="submit" value="Sign Up">
+				</form>
+				{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+					<li{% if message.tags %} class="errormsg"{% endif %}>
+						{{ message }}
+					</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			</div>
 		</div>
 	</body>
 </html>

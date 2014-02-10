@@ -1,14 +1,20 @@
 body
 {
 	font-family: Helvetica, Verdana, Sans-serif;
-	margin: 0;
-	background-color: lightgray;
-	min-width: 1000px;
+	margin: auto;
+	background-image: url("/Static/images/bodyback.png");
+	background-repeat: no-repeat;
+	background-size: 100% 50%;
+	background-color: #f0f0f0;
+	min-width: 800px;
 }
 
-div
+.content
 {
-	margin-left: 100px;
+	max-width: 1000px;
+	height: 500px;
+	margin: auto;
+	padding-left: 10px;
 }
 
 input[type="submit"]
@@ -19,7 +25,8 @@ input[type="submit"]
 
 #header
 {
-	background-color: black;
+	background-image: url("/Static/images/back.png");
+	background-repeat: repeat-x;
 	color: white;
 	height: 85px;
 	margin: 0;
@@ -44,7 +51,6 @@ input[type="submit"]
 	float: right;
 	font-size: 70%;
 	padding-top: 10px;
-	margin-right: 80px;
 }
 
 #logintable input
@@ -72,60 +78,59 @@ input[type="submit"]
 
 h1
 {
-	clear: both;
-	margin-left: 100px;
+	margin: 30px 0;
 }
 
-#featured
+#slideshow
 {
 	float: left;
-	width: 50%;
-	max-height: 450px;
-	margin-right: 0;
-}
-
-#slideshow { 
-    margin: 0; 
-    position: relative; 
-    height: 370px; 
-    padding: 10px; 
+	padding: 5px;
 	background-color: white;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+	box-shadow: 5px 5px 5px #888888;
+	width: 60%;
+	height: 375px;
 }
 
-#slideshow > div { 
-    position: absolute;
-	display: none;
+.banner 
+{
+	overflow: auto; 
 	margin: 0;
+	max-width: 100%;
 }
 
-#slideshow > div:first-child 
+.banner ul
 {
-	display: block;
-}
-
-#slideshow > div img
-{
+	margin: 0;
+	padding-left: 0;
 	width: 100%;
 }
 
-h2
+.banner li 
+{ 
+	list-style: none; 
+	margin: 0;
+	width: 100%;
+}
+        
+.banner ul li 
 {
-	margin: 0 0 30px 0;
-	font-size: 150%;
+	float: left; 
+	margin: 0;
+	width: 100%;
 }
 
 #reg
 {
 	float: right;
-	width: 30%;
-	border-radius: 20px;
-	margin: 0 60px 0 0;
+	width: 35%;
+	margin: 0;
+	position: relative;
+	top: -70px;
 }
 
 #reg input 
 {
-	width: 90%;
+	width: 100%;
 	height: 30px;
 	padding: 5px 0 5px 5px; 
 	border: 2px solid #ccc; 

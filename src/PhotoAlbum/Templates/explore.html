@@ -1,0 +1,24 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create your photoalbum!</title>
+		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'albumstyle.css' %}" type="text/css" >
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="{% static 'albumcap.js' %}"></script>
+	</head>
+	<body>
+		{% include "header.html" %}
+		<div id="albums">
+			<h1>Explore albums</h1>
+			<div id="albumcontainer">
+				{% for a in album %}
+					{% include "publicalbum.html" with actalbum=a %}
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+</html>

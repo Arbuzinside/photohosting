@@ -1,6 +1,6 @@
 div.album
 {
-	margin: 10px;
+	margin: 10px 10px 10px 0;
 	padding: 3px;
 	border: 1px solid grey;
 	width: 350px;
@@ -28,7 +28,7 @@ div.albumcontrollers
 	cursor: default;
 }
 
-button.albumbutton
+button.albumbutton, .holder
 {
 	float: right;
 	width: 80px;

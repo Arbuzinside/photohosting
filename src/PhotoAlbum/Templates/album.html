@@ -8,7 +8,6 @@
 			onclick="if(confirm('Are you sure you want to delete this album?')) window.location.href = '{% url 'PhotoAlbum.views.delete' albumid=actalbum.id %}'">
 			<img alt="deleteicon" src="{% static 'images/deleteicon.png' %}" /> Delete
 		</button>
-		<button class="albumbutton" type="button"><img alt="shareicon" src="{% static 'images/shareicon.png' %}" /> Share</button>
 		<button class="albumbutton" type="button" onclick="location.href='{% url 'PhotoAlbum.views.edit' actalbum.id %}'"><img alt="editicon" src="{% static 'images/editicon.png' %}" /> Edit</button>
 		<p class="albumcap">{{actalbum.title}}</p>
 	</div>
