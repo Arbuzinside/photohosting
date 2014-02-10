@@ -327,7 +327,7 @@ function loadalbum() {
 	pagecount = layouts.length - 2;
 	if (pagecount > 1) {
 		$("#addpage").css("display", "none");
-			$("#rightmove").css("display", "block");
+		$("#rightmove").css("display", "block");
 	}
 	
 	i = 0;

@@ -1,12 +1,10 @@
-{% extends "index.html" %}
-
 {% block content %}
 
      {% if form.errors %} 
          <p class="error"> Sorry, username or password isn't valid </p>
      {% endif %}
      
-     <form method="POST" action="/account/auth"> {% csrf_token %}
+     <form method="POST" action="{% url 'PhotoAlbum.auth_views.auth_view' %}"> {% csrf_token %}
 				<table id="logintable">
 					<tr>
 						<td> <label for="loginname">Username</label> </td>
@@ -14,8 +12,8 @@
 						<td> </td>
 					</tr>
 					<tr>
-						<td> <input id="loginname" type="text"> </td>
-						<td> <input id="loginpasswd" type="password"> </td>
+						<td> <input id="loginname" name="loginname" type="text"> </td>
+						<td> <input id="loginpasswd" name="loginpasswd" type="password"> </td>
 						<td> <input type="submit" value="Sign In" class="button"> </td>
 					</tr>
 					<tr>

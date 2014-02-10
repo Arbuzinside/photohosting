@@ -11,25 +11,7 @@
 	<body>
 		<div id="header">	
 			<div id="title">PhotoSite</div>
-			<form method="POST" action="">
-				<table id="logintable">
-					<tr>
-						<td> <label for="loginname">Username</label> </td>
-						<td> <label for="loginpasswd">Password</label> </td>
-						<td> </td>
-					</tr>
-					<tr>
-						<td> <input id="loginname" type="text"> </td>
-						<td> <input id="loginpasswd" type="password"> </td>
-						<td> <input type="submit" value="Sign In" class="button"> </td>
-					</tr>
-					<tr>
-						<td> <input type="checkbox" id="keep"> <label for="keep">Keep me logged in</label> </td>
-						<td> <a href="">Forgot password</a> </td>
-						<td> </td>
-					</tr>
-				</table>
-			</form>
+			{% include 'login.html' %}
 		</div>
 		<h1>Welcome to our website!</h1>
 		<div id="featured">
@@ -40,19 +22,6 @@
 				<div><img class="show" alt="pic3" src="{% static 'Slider/images/cat3.png' %}" /></div>
 			</div>
 		</div>
-		<div id="reg">					<!--TODO validatation-->
-			<form method="POST" action="">
-				<h2>Sign Up</h2>
-				<label for="regname">Username:</label><br>
-				<input id="regname" type="text"><br>
-				<label for="regemail">Email:</label><br>
-				<input id="regemail" type="text"><br>
-				<label for="regpasswd">Password:</label><br>
-				<input id="regpasswd" type="password"><br>
-				<label for="regpasswd2">Re-enter password:</label><br>
-				<input id="regpasswd2" type="password"><br>
-				<input type="submit" value="Sign Up">
-			</form>
-		</div>
+		{% include 'register.html' %}
 	</body>
 </html>

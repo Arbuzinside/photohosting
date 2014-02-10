@@ -78,6 +78,11 @@ body
 	float: right;
 }
 
+#leftpage:hover, #rightpage:hover
+{
+	border: 1px solid darkmagenta;
+}
+
 #leftcontroller, #rightcontroller
 {
 	height: 100%;
@@ -200,4 +205,21 @@ img.deletelayout
 	padding: 2px;
 	position: relative;
 	top: -66px;
+}
+
+.imageholder
+{
+	height: 47%;
+	background-image: url('/Static/images/newimage.png');
+	background-size: 150px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border: 1px dashed #333333;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.imageholder:hover 
+{
+	border: 1px solid darkmagenta;
 }

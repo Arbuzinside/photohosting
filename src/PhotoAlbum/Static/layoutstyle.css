@@ -1,20 +1,3 @@
-.imageholder
-{
-	height: 47%;
-	background-image: url('/Static/images/newimage.png');
-	background-size: 150px;
-	background-repeat: no-repeat;
-	background-position: center center;
-	border: 1px dashed #333333;
-	margin: 10px;
-	cursor: pointer;
-}
-
-.imageholder:hover 
-{
-	border: 1px solid darkmagenta;
-}
-
 #toppanel0, #bottompanel0, #allpanel0, #toppanel1, #bottompanel1, #allpanel1
 {
 	clear: both;

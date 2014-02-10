@@ -1,9 +1,7 @@
-{% extends "index.html" %}
-
 {% block content %}
 
   <div id="reg">					<!--TODO validatation-->
-			<form method="POST" action="/accounts/register/"> {% csrf_token %}
+			<form method="POST" action="{% url 'PhotoAlbum.auth_views.register_user' %}"> {% csrf_token %}
 				<h2>Sign Up</h2>
 				{{ form }}
 				<input type="submit" value="Sign Up">

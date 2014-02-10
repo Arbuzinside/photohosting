@@ -2,24 +2,29 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
-from forms import MyRegistrationForm
+from models import MyRegistrationForm
 
 
 def login(request):
     c = {}
     c.update(csrf(request))
-    return render_to_response('login.html', c)
+    return render_to_response('home.html', c)
 
 def auth_view(request):
-    username = request.POST.get('loginname', '')
-    password = request.POST.get('loginpasswd', '')
-    user = auth.authenticate(username=username, password = password)
+    name = request.POST.get('loginname', '')
+    passwd = request.POST.get('loginpasswd', '')
+    
+    print "username: " + name + " " + passwd
+    
+    user = auth.authenticate(username = name, password = passwd)
+    
+    print "user authenticate: " + user.username
     
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/account/loggedin')
+        return HttpResponseRedirect('/home', {'username': name})
     else:
-        return HttpResponseRedirect('/account/invalid')
+        return HttpResponseRedirect('/')
     
 def loggedin(request):
     return render_to_response('loggedin.html',
@@ -37,8 +42,8 @@ def register_user(request):
         form = MyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/accounts/register_success')        
-        
+            return HttpResponseRedirect('/home', { 'username': request.user.username})
+     
     args = {}
     args.update(csrf(request))
     
