@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+  <div id="reg">					<!--TODO validatation-->
+			<form method="POST" action="/accounts/register/"> {% csrf_token %}
+				<h2>Sign Up</h2>
+				{{ form }}
+				<input type="submit" value="Sign Up">
+			</form>
+		</div>
+		
+{% endblock %} 
