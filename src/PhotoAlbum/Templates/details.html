@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Order details!</title>
+		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'viewstyle.css' %}" type="text/css" />
+		<script src="{% static 'view.js' %}"></script>
+	</head>
+	<body>
+		{% include "header.html" %}
+		<div>
+			<form method="POST" action="{% url 'PhotoAlbum.views.confirm' %}" > {% csrf_token %}
+				<table>
+					<tr>
+						<td> <label for="full_name">Full name</label> </td>
+						<td> <input type="text" id="full_name" name="full_name" /> </td>
+					</tr>
+					<tr>
+						<td> <label for="country">Country</label>  </td>
+						<td> <input type="text" id="country" name="country" /> </td>
+					</tr>
+					<tr>
+						<td> <label for="post_code">Post Code</label> </td>
+						<td> <input type="text" id="post_code" name="post_code" /> </td>
+					</tr>
+					<tr>
+						<td> <label for="address">Address</label> </td>
+						<td> <input type="text" id="address" name="address" /> </td>
+					</tr>
+					<tr>
+						<td> <label for="quantity">Quantity</label> </td>
+						<td> <input type="text" id="quantity" name="quantity" /> </td>
+					</tr>
+					<tr>
+						<td> <label for="mail">E-mail</label> </td>
+						<td> <input type="text" id="e-mail" name="mail" /> </td>
+					</tr>
+				</table>
+				
+				<input type="submit" id="orderalbum" value="Order Album" />
+			</form>
+		</div>
+	</body>
+</html>

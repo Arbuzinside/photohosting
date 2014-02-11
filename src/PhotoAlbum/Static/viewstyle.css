@@ -27,6 +27,23 @@ body
 	width: 623px;
 }
 
+#orderalbum
+{
+	padding: 5px 0 5px 5px; 
+	border: 2px solid #ccc; 
+	-webkit-border-radius: 5px;
+	border-radius: 10px;
+	font-size: 120%;
+	width: 135px;
+	height: 45px;
+	background-color: darkmagenta;
+	border-color: darkmagenta;
+	color: white;
+	font-weight: bold;
+	margin-left: 45px;
+	cursor: pointer;
+}
+
 #albumcontent
 {
 	margin: 0 auto 5px auto;

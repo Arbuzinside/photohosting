@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Create your photoalbum!</title>
+		<title>Moments - Edit Album</title>
 		<link rel="stylesheet" href="{% static 'editstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'layoutstyle.css' %}" type="text/css" />
@@ -14,7 +14,7 @@
 		<script>
 			{% if album %}
 				jsonlayouts = {{layouts|safe}};
-				jsonimages = {{images|safe}};
+				jsonimages = {{images|safe}}; 
 			{% endif %}
 		</script>
 	</head>
@@ -23,13 +23,13 @@
 		<div id="titlecontainer">
 			<form method="POST" action="{% url 'PhotoAlbum.views.save' %}" onsubmit="return save_album()">{% csrf_token %}
 				<label for="albumtitle">Title:</label>
-				<input id="albumtitle" name="title" type="text" placeholder="New Album" value="{{album.title}}"/>
+				<input type="text" id="albumtitle" name="title" placeholder="New Album" value="{{album.title}}"/>
 				{% if album.public == True %}
 					<input type="checkbox" name="public" value="public" checked>Public
 				{% else %}
 					<input type="checkbox" name="public" value="public">Public
 				{% endif %}
-				<input id="savealbum" type="submit" value="Save Album" />
+				<input type="submit" id="savealbum" value="Save Album" />
 				<input type="hidden" id="layouts" name="layouts" />
 				<input type="hidden" id="images" name="images" value="" />
 				<input type="hidden" id="albumid" name="albumid" value="{{album.id}}" />

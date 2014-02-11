@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from datetime import datetime
 
-from hashlib import sha1
+from hashlib import sha1, md5
 from models import Album, Page, Picture, MyRegistrationForm
 
 # Session handling
@@ -138,8 +138,6 @@ def save(request):
 
 def view(request, albumlink):
     album = Album.objects.get(link = albumlink)
-    #print 'request.user ' + request.user
-    #print 'album.owner ' + album.owner
     if (request.user == album.owner or album.public): #TODO: do it on the client side
         lays = {}
         imgs = {}
@@ -159,3 +157,32 @@ def view(request, albumlink):
 def explore(request):
     album = Album.objects.filter(public = True)
     return render_to_response("explore.html", {'album': album, 'username': request.user})
+
+def pay(request):
+    #generate pid
+    if request.method == 'POST':
+        request.session["albumlink"] = request.POST.get('albumlink')
+        return render_to_response("details.html", {}, context_instance=RequestContext(request))
+        
+def confirm(request):
+    if request.method == 'POST':
+        #order details
+        request.session["name"] = request.POST.get("name")
+        request.session["country"] = request.POST.get("country")
+        request.session["postcode"] = request.POST.get("postcode")
+        request.session["address"] = request.POST.get("address")
+        request.session["quantity"] = request.POST.get("quantity")
+        request.session["mail"] = request.POST.get("mail")
+        request.session["sum"] = int('0' + request.session["quantity"]) * 10 #TODO: price of the album?
+        
+        #generate checksum
+        pid = "pid" #md5(request.session["albumlink"] + datetime.utcnow().replace(tzinfo=utc).isoformat()).hexdigest()
+        sid = "Moments"
+        secret_key = "61d78fc36457dfe32acd8a3731ba71a6"
+        checksumstr = "pid=%s&sid=%s&amount=%s&token=%s"%(pid, sid, request.session["sum"], secret_key)
+        m = md5(checksumstr)
+        checksum = m.hexdigest()
+        
+        print checksum  + " check"
+        
+        return render_to_response("confirm.html", { "session" : request.session, 'pid' : pid, 'sid' : sid, 'checksum' : checksum })        
