@@ -10,6 +10,8 @@ urlpatterns = patterns('',
 
     url(r'^admin/$', include(admin.site.urls)),
     
+    url(r'', include('social_auth.urls')),
+    #url(r'^login/$', RedirectView.as_view('/login/facebook'),
     #User auth urls
     #url(r'^accounts/login/$',   'PhotoAlbum.auth_views.login'),
     #url(r'^accounts/auth/$',    'PhotoAlbum.auth_views.auth_view'),
