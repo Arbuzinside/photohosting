@@ -45,8 +45,11 @@ def logout(request):
 # Main Methods
 
 def index(request):
-    form = MyRegistrationForm()
-    return render_to_response("index.html", {'form': form}, context_instance=RequestContext(request))  
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/home/')
+    else:
+        form = MyRegistrationForm()
+        return render_to_response("index.html", {'form': form}, context_instance=RequestContext(request))  
 
 @login_required(login_url='/')
 def home(request):
@@ -71,7 +74,7 @@ def edit(request, albumid = None):
         
         return render_to_response("edit.html", {'album' : album, 'layouts' : layouts, 'images' : images, 'username': request.user}, context_instance=RequestContext(request))
     else:
-        return render_to_response("edit.html", {}, context_instance=RequestContext(request))
+        return render_to_response("edit.html", {'username': request.user}, context_instance=RequestContext(request))
 
 def delete(request, albumid = None):
     if albumid:
@@ -154,5 +157,5 @@ def view(request, albumlink):
         return HttpResponseRedirect('/')
 
 def explore(request):
-    album = Album.objects.all()
-    return render_to_response("explore.html", {'album': album})
+    album = Album.objects.filter(public = True)
+    return render_to_response("explore.html", {'album': album, 'username': request.user})
