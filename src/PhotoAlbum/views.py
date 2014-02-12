@@ -7,7 +7,8 @@ from django.utils import simplejson
 from django.contrib.auth import authenticate
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-
+from django.core.mail import send_mail
+    
 from datetime import datetime
 
 from hashlib import sha1, md5
@@ -185,4 +186,17 @@ def confirm(request):
         
         print checksum  + " check"
         
-        return render_to_response("confirm.html", { "session" : request.session, 'pid' : pid, 'sid' : sid, 'checksum' : checksum })        
+        return render_to_response("confirm.html", { "session" : request.session, 'pid' : pid, 'sid' : sid, 'checksum' : checksum })  
+    
+def success(request):
+    print "payed"
+    subject = 'order details'
+    message = 'Thanks for buying the album you can access the online form at'
+    sender = 'Moments'
+    recipients = ['shanandi27@gmail.com']
+    send_mail(subject, message, sender, recipients)
+    return HttpResponseRedirect('/home/')
+
+def cancel(request):
+    print "canceled"
+    return HttpResponseRedirect('/home/')

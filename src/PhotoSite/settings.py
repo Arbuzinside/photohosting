@@ -97,3 +97,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/Static/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'moments.albums@gmail.com'
+EMAIL_HOST_PASSWORD = 'Software'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
