@@ -22,12 +22,12 @@
 		{% include "header.html" %}
 		<div id="titlecontainer">
 			<form method="POST" action="{% url 'PhotoAlbum.views.save' %}" onsubmit="return save_album()">{% csrf_token %}
-				<label for="albumtitle">Title:</label>
+				<label class="titleclass" for="albumtitle">Title:</label>
 				<input id="albumtitle" name="title" type="text" placeholder="New Album" value="{{album.title}}"/>
 				{% if album.public == True %}
-					<input type="checkbox" name="public" value="public" checked>Public
+					<input type="checkbox" name="public" value="public" id="public" checked><label for="public" id="publiclabel">Public</label>
 				{% else %}
-					<input type="checkbox" name="public" value="public">Public
+					<input type="checkbox" name="public" value="public" id="public"><label for="public" id="publiclabel">Public</label>
 				{% endif %}
 				<input id="savealbum" type="submit" value="Save Album" />
 				<input type="hidden" id="layouts" name="layouts" />

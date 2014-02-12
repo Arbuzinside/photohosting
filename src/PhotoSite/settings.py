@@ -67,13 +67,13 @@ LOGIN_ERROR_URL = '/index/'
 
 
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.facebook.FacebookBackend',
-   'django.contrib.auth.backends.ModelBackend',
+  'social_auth.backends.facebook.FacebookBackend',
+  'django.contrib.auth.backends.ModelBackend',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-                            'django.contrib.auth.context_processors.auth',
-                            'social_auth.context_processors.social_auth_by_type_backends',
+  'django.contrib.auth.context_processors.auth',
+  'social_auth.context_processors.social_auth_by_type_backends',
                           
 )
 

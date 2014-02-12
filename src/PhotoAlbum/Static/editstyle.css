@@ -15,14 +15,25 @@ body
 	width: 900px;
 }
 
-#titlecontainer label
+#titlecontainer .titleclass
 {
 	font-size: 180%;
 }
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder 
 {
-  color: #636363;
+	color: #636363;
+}
+
+#titlecontainer input[type="checkbox"]
+{
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	position: relative;
+	left: 32px;
+	z-index: 999;
 }
 
 #albumtitle
@@ -32,24 +43,50 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
 	background-color: transparent;
 	font-size: 180%;
 	color: darkmagenta;
-	width: 503px;
+	width: 480px;
 }
 
 #savealbum
+{
+	width: 135px;
+	margin-left: 30px;
+}
+
+#savealbum, #titlecontainer #publiclabel
 {
 	padding: 5px 0 5px 5px; 
 	border: 2px solid #ccc; 
 	-webkit-border-radius: 5px;
 	border-radius: 10px;
 	font-size: 120%;
-	width: 135px;
-	height: 45px;
 	background-color: darkmagenta;
 	border-color: darkmagenta;
 	color: white;
 	font-weight: bold;
-	margin-left: 45px;
 	cursor: pointer;
+	box-shadow: 2px 2px 2px #888888;
+}
+
+#titlecontainer #publiclabel
+{
+	width: 125px;
+}
+
+#publiclabel
+{
+	display: inline-block;
+	text-align: center;
+	width: 130px;
+}
+
+#savealbum:hover
+{
+	opacity: 0.9;
+}
+
+#savealbum:active
+{
+	box-shadow: none;
 }
 
 #albumcontent
