@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 #TEMPLATE_DIRS = (
-#   BASE_DIR + '/PhotoAlbum/Templates/'
+ #  BASE_DIR + '/PhotoAlbum/Templates/'
 #)
 
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PhotoAlbum',
+    'social_auth',
+    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,13 +53,44 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_auth.middleware.SocialAuthExceptionMiddleware',
 )
 
 ROOT_URLCONF = 'PhotoSite.urls'
 
 WSGI_APPLICATION = 'PhotoSite.wsgi.application'
 
+#Social auth
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/home/'
+LOGIN_ERROR_URL = '/index/'
 
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+                            'django.contrib.auth.context_processors.auth',
+                            'social_auth.context_processors.social_auth_by_type_backends',
+                          
+)
+
+SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
+SOCIAL_AUTH_UID_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
+SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
+
+SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook')
+#SOCIAL_AUTH_USER_MODEL = 'django.contrib.auth.models.User'
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '558139250949505'
+SOCIAL_AUTH_FACEBOOK_SECRET = '40d43486cc9885c35db222d13a82e9ac'
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 """
@@ -95,7 +128,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
+#STATICFILES_DIRS = ( '/home/dima/git/group-22-2013/src/PhotoAlbum/Static/',)
 STATIC_URL = '/Static/'
 
 EMAIL_HOST = 'smtp.gmail.com'

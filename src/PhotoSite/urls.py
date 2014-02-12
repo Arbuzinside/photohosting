@@ -10,8 +10,10 @@ urlpatterns = patterns('',
 
     url(r'^admin/$', include(admin.site.urls)),
     
+    url(r'', include('social_auth.urls')),
+    #url(r'^login/$', RedirectView.as_view('/login/facebook'),
     #User auth urls
-    #url(r'^accounts/login/$',   'PhotoAlbum.auth_views.login'),
+    #url(r'^accounts/login/$'   'PhotoAlbum.auth_views.login'),
     #url(r'^accounts/auth/$',    'PhotoAlbum.auth_views.auth_view'),
     #url(r'^accounts/loggedin/$',  'PhotoAlbum.auth_views.loggedin'),
     #url(r'^accounts/invalid/$',    'PhotoAlbum.auth_views.invalid_login'),
@@ -19,6 +21,7 @@ urlpatterns = patterns('',
     #User reg urls
     url(r'^accounts/register/$',  'PhotoAlbum.views.register_user'),
     #url(r'^accounts/register_success/$', 'PhotoAlbum.auth_views.register_success'),
+    url(r'^home/settings/$', 'PhotoAlbum.views.settings', name='settings'),
     url(r'^login/$', 'PhotoAlbum.views.login', name='login'),
     url(r'^logout/$', 'PhotoAlbum.views.logout', name='logout'),
     url(r'^home/$', 'PhotoAlbum.views.home', name='home'),

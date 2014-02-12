@@ -159,6 +159,7 @@ def explore(request):
     album = Album.objects.filter(public = True)
     return render_to_response("explore.html", {'album': album, 'username': request.user})
 
+
 def pay(request):
     #generate pid
     if request.method == 'POST':
