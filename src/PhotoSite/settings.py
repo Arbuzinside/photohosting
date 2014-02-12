@@ -93,7 +93,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '40d43486cc9885c35db222d13a82e9ac'
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -111,7 +111,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-"""
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
@@ -130,3 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 #STATICFILES_DIRS = ( '/home/dima/git/group-22-2013/src/PhotoAlbum/Static/',)
 STATIC_URL = '/Static/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'moments.albums@gmail.com'
+EMAIL_HOST_PASSWORD = 'Software'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Create your photoalbum!</title>
+		<title>Moments - Edit Album</title>
 		<link rel="stylesheet" href="{% static 'editstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'layoutstyle.css' %}" type="text/css" />
@@ -14,7 +14,7 @@
 		<script>
 			{% if album %}
 				jsonlayouts = {{layouts|safe}};
-				jsonimages = {{images|safe}};
+				jsonimages = {{images|safe}}; 
 			{% endif %}
 		</script>
 	</head>

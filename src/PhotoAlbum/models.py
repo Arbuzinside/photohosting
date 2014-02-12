@@ -38,3 +38,9 @@ class MyRegistrationForm(UserCreationForm):
             user.save()
             
         return user
+    
+class Payment(models.Model):
+    pid = models.CharField(max_length = 40)
+    date = models.DateTimeField()
+    item = models.ForeignKey(Album, related_name="payments")
+    buyer = models.ForeignKey(User, related_name="payments")
