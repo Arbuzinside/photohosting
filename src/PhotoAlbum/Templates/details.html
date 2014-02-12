@@ -5,42 +5,60 @@
 	<head>
 		<title>Order details!</title>
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
-		<link rel="stylesheet" href="{% static 'viewstyle.css' %}" type="text/css" />
-		<script src="{% static 'view.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'detailsstyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'albumstyle.css' %}" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="{% static 'details.js' %}"></script>
+		<script>
+			pagenum = {{pagenum}};
+		</script>
 	</head>
 	<body>
 		{% include "header.html" %}
-		<div>
-			<form method="POST" action="{% url 'PhotoAlbum.views.confirm' %}" > {% csrf_token %}
+		<div class="content">
+			<h1>Order Details</h1>
+			<form method="POST" action="{% url 'PhotoAlbum.views.confirm' %}" onsubmit="return checkfields()" > {% csrf_token %}
 				<table>
 					<tr>
-						<td> <label for="full_name">Full name</label> </td>
-						<td> <input type="text" id="full_name" name="full_name" /> </td>
+						<td> <label for="full_name">Full name:</label> </td>
+						<td> <input type="text" id="full_name" name="name" /> </td>
 					</tr>
 					<tr>
-						<td> <label for="country">Country</label>  </td>
+						<td> <label for="country">Country:</label>  </td>
 						<td> <input type="text" id="country" name="country" /> </td>
 					</tr>
 					<tr>
-						<td> <label for="post_code">Post Code</label> </td>
-						<td> <input type="text" id="post_code" name="post_code" /> </td>
+						<td> <label for="post_code">Post Code:</label> </td>
+						<td> <input type="text" id="post_code" name="postcode" /> </td>
 					</tr>
 					<tr>
-						<td> <label for="address">Address</label> </td>
+						<td> <label for="address">Address:</label> </td>
 						<td> <input type="text" id="address" name="address" /> </td>
 					</tr>
 					<tr>
-						<td> <label for="quantity">Quantity</label> </td>
-						<td> <input type="text" id="quantity" name="quantity" /> </td>
+						<td> <label for="quantity">Quantity:</label> </td>
+						<td> <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="recalculatesum()" /> </td>
 					</tr>
 					<tr>
-						<td> <label for="mail">E-mail</label> </td>
-						<td> <input type="text" id="e-mail" name="mail" /> </td>
+						<td> <label for="mail">E-mail:</label> </td>
+						<td> <input type="email" id="mail" name="mail" /> </td>
+					</tr>
+					<tr>
+						<td colspan="2"><hr/></td>
+					</tr>
+					<tr>
+						<td> <label>Sum:</label> </td>
+						<td> <p id="suminput" >0 €</p> </td>
 					</tr>
 				</table>
-				
+				<input type="hidden" name="sum" id="sum" />
+				<input type="button" id="backbutton" value="<< Back" onclick="window.history.back()"/>
 				<input type="submit" id="orderalbum" value="Order Album" />
 			</form>
+			<div id="albumpreview">
+				<h2>Preview</h2>
+				{% include "publicalbum.html" with actalbum=album %}
+			</div>
 		</div>
 	</body>
 </html>

@@ -77,12 +77,14 @@ def edit(request, albumid = None):
     else:
         return render_to_response("edit.html", {'username': request.user}, context_instance=RequestContext(request))
 
+@login_required(login_url='/')
 def delete(request, albumid = None):
     if albumid:
         album = get_object_or_404(Album, id=albumid)
         album.delete()
     return HttpResponseRedirect('/home/') 
 
+@login_required(login_url='/')
 def save(request):
     if request.method == 'POST':
         #validate???
@@ -159,13 +161,16 @@ def explore(request):
     album = Album.objects.filter(public = True)
     return render_to_response("explore.html", {'album': album, 'username': request.user})
 
-
+@login_required(login_url='/')
 def pay(request):
     #generate pid
     if request.method == 'POST':
         request.session["albumlink"] = request.POST.get('albumlink')
-        return render_to_response("details.html", {}, context_instance=RequestContext(request))
-        
+        album = Album.objects.get(link = request.session["albumlink"])
+        pagenum = album.pages.all().count()
+        return render_to_response("details.html", {'album' : album, 'pagenum': pagenum, 'username': request.user}, context_instance=RequestContext(request))
+
+@login_required(login_url='/')      
 def confirm(request):
     if request.method == 'POST':
         #order details
@@ -175,7 +180,7 @@ def confirm(request):
         request.session["address"] = request.POST.get("address")
         request.session["quantity"] = request.POST.get("quantity")
         request.session["mail"] = request.POST.get("mail")
-        request.session["sum"] = int('0' + request.session["quantity"]) * 10 #TODO: price of the album?
+        request.session["sum"] = request.POST.get("sum")
         
         #generate checksum
         pid = "pid" #md5(request.session["albumlink"] + datetime.utcnow().replace(tzinfo=utc).isoformat()).hexdigest()
@@ -187,8 +192,11 @@ def confirm(request):
         
         print checksum  + " check"
         
-        return render_to_response("confirm.html", { "session" : request.session, 'pid' : pid, 'sid' : sid, 'checksum' : checksum })  
-    
+        album = Album.objects.get(link = request.session["albumlink"])
+        
+        return render_to_response("confirm.html", { "session" : request.session, 'pid' : pid, 'sid' : sid, 'checksum' : checksum, 'username': request.user, 'album': album })  
+
+@login_required(login_url='/')  
 def success(request):
     print "payed"
     subject = 'order details'
@@ -196,8 +204,17 @@ def success(request):
     sender = 'Moments'
     recipients = ['shanandi27@gmail.com']
     send_mail(subject, message, sender, recipients)
-    return HttpResponseRedirect('/home/')
+    
+    #TODO: get reference number
+    
+    return render_to_response("success.html", {'username': request.user})
 
+@login_required(login_url='/')
 def cancel(request):
     print "canceled"
     return HttpResponseRedirect('/home/')
+
+@login_required(login_url='/')
+def settings(request):
+    albums = Album.objects.filter(owner = request.user)
+    return render_to_response("settings.html", {'username' : request.user, 'album' : albums}, context_instance=RequestContext(request))

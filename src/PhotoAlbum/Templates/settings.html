@@ -15,7 +15,26 @@
 		
 		<div id="albums">
 			<h1>Account settings</h1>
-			
+			<h2>Ordered albums</h2>
+			{% if payments %}
+			<table>
+				<tr>
+					<th>Album link</th>
+					<th>Date</th>
+					<th>Price</th>
+				</tr>
+				<!-- TODO  -->
+				{% for p in payments %}
+				<tr>
+					<td><!-- how to get the album link? --></td>
+					<td>{{p.date}}</td>
+					<td>{{p.price}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+			{% else %}
+			<p>You have not purchased albums yet!</p>
+			{% endif %}
 		</div>
 	</body>
 </html>

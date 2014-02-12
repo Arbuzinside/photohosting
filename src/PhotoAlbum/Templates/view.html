@@ -23,11 +23,11 @@
 		<div id="fb-root"></div>
 		<div id="titlecontainer">
 			<label for="albumtitle">Title:</label>
-			<input id="albumtitle" name="title" type="text" placeholder="New Album" value="{{album.title}}" disabled="true"/>
+			<input id="albumtitle" name="title" type="text" placeholder="New Album" value="{{album.title}}" disabled />
 			<div class="fb-share-button" data-href="http://google.com" data-type="button_count"></div>
-			<form method="POST" action="{% url 'PhotoAlbum.views.pay' %}">{% csrf_token %}
+			<form method="POST" id="orderalbum" action="{% url 'PhotoAlbum.views.pay' %}">{% csrf_token %}
 				<input type="hidden" name="albumlink" value="{{ album.link }}" />
-				<input type="submit" id="orderalbum" value="Order Album" />
+				<input type="submit" value="Order Album" />
 			</form>
 		</div>
 		<div id="albumcontent">

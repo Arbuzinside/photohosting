@@ -25,6 +25,7 @@ class MyRegistrationForm(UserCreationForm):
     username = forms.CharField(min_length=5, max_length=50)
     password1 = forms.PasswordInput()
     password2 = forms.PasswordInput()
+    password2.help_text = None
     
     class Meta:
         model = User
@@ -44,3 +45,4 @@ class Payment(models.Model):
     date = models.DateTimeField()
     item = models.ForeignKey(Album, related_name="payments")
     buyer = models.ForeignKey(User, related_name="payments")
+    #TODO: price & reference number!

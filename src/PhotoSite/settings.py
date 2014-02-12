@@ -93,7 +93,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '40d43486cc9885c35db222d13a82e9ac'
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -111,7 +111,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+"""
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 

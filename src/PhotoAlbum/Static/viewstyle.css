@@ -2,7 +2,10 @@ body
 {
 	font-family: Helvetica, Verdana, Sans-serif;
 	margin: 0;
-	background-color: lightgray;
+	background-image: url("/Static/images/bodyback.png");
+	background-repeat: no-repeat;
+	background-size: 100% 50%;
+	background-color: #f0f0f0;
 	min-width: 1000px;
 }
 
@@ -24,24 +27,30 @@ body
 	background-color: transparent;
 	font-size: 180%;
 	color: darkmagenta;
-	width: 623px;
+	width: 540px;
 }
 
 #orderalbum
+{
+	width: 138px;
+	margin-left: 30px;
+	display: inline;
+}
+
+#orderalbum input[type="submit"]
 {
 	padding: 5px 0 5px 5px; 
 	border: 2px solid #ccc; 
 	-webkit-border-radius: 5px;
 	border-radius: 10px;
 	font-size: 120%;
-	width: 135px;
-	height: 45px;
 	background-color: darkmagenta;
 	border-color: darkmagenta;
 	color: white;
 	font-weight: bold;
-	margin-left: 45px;
 	cursor: pointer;
+	box-shadow: 2px 2px 2px #888888;
+	width: 138px;
 }
 
 #albumcontent
