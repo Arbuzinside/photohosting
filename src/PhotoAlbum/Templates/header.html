@@ -7,7 +7,7 @@
 			<li><a href="{% url 'PhotoAlbum.views.explore' %}">Explore</a> </li>
 			<li>{{username}} <span>&#9660;</span>
 				<ul>
-					<li><a href="">Settings</a></li>
+					<li><a href="{% url 'PhotoAlbum.views.settings' %}">Settings</a></li>
 					<li><a href="{% url 'PhotoAlbum.views.logout' %}">Logout</a></li>
 				</ul>
 			</li>

@@ -159,3 +159,10 @@ def view(request, albumlink):
 def explore(request):
     album = Album.objects.filter(public = True)
     return render_to_response("explore.html", {'album': album, 'username': request.user})
+
+
+@login_required(login_url='/')
+def settings(request):
+    albums = Album.objects.filter(owner = request.user)
+    return render_to_response("settings.html", {'username' : request.user, 'album' : albums}, context_instance=RequestContext(request))
+
