@@ -11,12 +11,6 @@
 	<body>
 		{% include "header.html" %}
 		<div>
-			<!--localhost:8000/confirm/?pid=pid&
-			sid=Moments&
-			success_url=http%3A%2F%2Flocalhost%3A8000%2Fpayment%2Fsuccess&
-			cancel_url=http%3A%2F%2Flocalhost%3A8000%2Fpayment%2Fcancel&
-			error_url=http%3A%2F%2Flocalhost%3A8000%2Fpayment%2Ferror&
-			checksum=a4306571893c0469697e7dfbe2b16b55 -->
 			<form method="POST" action="http://payments.webcourse.niksula.hut.fi/pay/" >
 				<input type="hidden" name="pid" value="{{ pid }}" />
 				<input type="hidden" name="sid" value="{{ sid }}" />

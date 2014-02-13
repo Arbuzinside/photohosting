@@ -131,6 +131,7 @@ USE_TZ = True
 #STATICFILES_DIRS = ( '/home/dima/git/group-22-2013/src/PhotoAlbum/Static/',)
 STATIC_URL = '/Static/'
 
+#email preferences
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'moments.albums@gmail.com'
 EMAIL_HOST_PASSWORD = 'Software'
