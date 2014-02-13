@@ -13,7 +13,7 @@ from datetime import datetime
 
 from hashlib import sha1, md5
 from models import Album, Page, Picture, Payment
-from forms import MyRegistrationForms, UserProfileForm
+from forms import MyRegistrationForm, UserProfileForm
 
 # Session handling
 
