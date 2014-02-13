@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from datetime import datetime
 
 from hashlib import sha1, md5
-from models import Album, Page, Picture, MyRegistrationForm
+from models import Album, Page, Picture, MyRegistrationForm, Payment
 
 # Session handling
 
@@ -183,7 +183,7 @@ def confirm(request):
         request.session["sum"] = request.POST.get("sum")
         
         #generate checksum
-        pid = "pid" #md5(request.session["albumlink"] + datetime.utcnow().replace(tzinfo=utc).isoformat()).hexdigest()
+        pid = md5(request.session["albumlink"] + datetime.utcnow().replace(tzinfo=utc).isoformat()).hexdigest()
         sid = "Moments"
         secret_key = "61d78fc36457dfe32acd8a3731ba71a6"
         checksumstr = "pid=%s&sid=%s&amount=%s&token=%s"%(pid, sid, request.session["sum"], secret_key)
@@ -198,14 +198,27 @@ def confirm(request):
 
 @login_required(login_url='/')  
 def success(request):
-    print "payed"
     subject = 'order details'
     message = 'Thanks for buying the album you can access the online form at'
     sender = 'Moments'
     recipients = ['shanandi27@gmail.com']
-    send_mail(subject, message, sender, recipients)
+    send_mail(subject, message, sender, recipients)    
     
-    #TODO: get reference number
+    if request.method == 'GET':
+        print "pid: " + request.GET.get('pid')
+        print "ref: " + request.GET.get('ref')
+        print "checksum: " + request.GET.get('checksum')
+        
+        payment = Payment()
+        payment.pid = request.GET.get('pid')
+        payment.date = datetime.utcnow().replace(tzinfo=utc)
+        payment.price = request.session['sum']
+        payment.reference = request.GET.get('ref')
+        album = Album.objects.get(link = request.session['albumlink'])
+        payment.item = album
+        payment.buyer = request.user
+        
+        payment.save()
     
     return render_to_response("success.html", {'username': request.user})
 
@@ -216,5 +229,6 @@ def cancel(request):
 
 @login_required(login_url='/')
 def settings(request):
-    albums = Album.objects.filter(owner = request.user)
-    return render_to_response("settings.html", {'username' : request.user, 'album' : albums}, context_instance=RequestContext(request))
+    payments = Payment.objects.filter(buyer = request.user)
+    
+    return render_to_response("settings.html", {'username' : request.user, 'payments': payments}, context_instance=RequestContext(request))

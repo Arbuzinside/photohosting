@@ -70,19 +70,25 @@ form input[type="submit"], #backbutton
 	font-weight: bold;
 }
 
-form #reviewtable tr td
+#payments tr td, #payments tr th
+{
+	width: 200px;
+	height: 30px;
+}
+
+form #reviewtable tr td, #payments tr td
 {
 	padding-left: 10px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
 
-form #reviewtable tr:nth-child(even)
+form #reviewtable tr:nth-child(even), #payments tr:nth-child(even)
 {
 	background-color: white;
 }
 
-form #reviewtable tr:nth-child(odd)
+form #reviewtable tr:nth-child(odd), #payments tr:nth-child(odd)
 {
 	background-color: lightgray;
 }
