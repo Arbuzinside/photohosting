@@ -229,6 +229,6 @@ def cancel(request):
 
 @login_required(login_url='/')
 def settings(request):
-    payments = Payment.objects.filter(buyer = request.user)
-    
-    return render_to_response("settings.html", {'username' : request.user, 'payments': payments}, context_instance=RequestContext(request))
+        form = UserProfileForm(request.POST, instance = request.user)
+        payments = Payment.objects.filter(buyer = request.user)
+        return render_to_response("settings.html", {'form': form, 'username' : request.user, 'payments' : payments}, context_instance=RequestContext(request))  
