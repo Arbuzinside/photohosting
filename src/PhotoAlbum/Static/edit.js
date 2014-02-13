@@ -46,8 +46,14 @@ $(document).ready(function() {
 				var url = $('input[name=picurl]').val();
 				var caption = $('input[name=piccaption]').val();
 				if (url && caption) {
-					uploadimage(url, caption);
-					$(this).dialog( "close" ); 
+					$('#image-tester img').attr('src', url);
+					$('#image-tester img').error(function() { //TODO: create css style for error instead alert message
+						alert('Error: not valid image!');
+					});
+					$('#image-tester img').load(function() {
+						uploadimage(url, caption);
+						$("#uploadpic").dialog( "close" ); 
+					});
 				}
 				else
 					alert("The fields are required!");

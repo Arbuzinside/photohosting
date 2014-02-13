@@ -46,12 +46,8 @@
 			{% endif %}
 			<h1>Welcome to our website!</h1>
 			<div id="slideshow">
-				<div class="banner">
-					<ul>
-						<li><img src="{% static 'Slider/images/northern.png' %}" ></li>
-						<li><img src="{% static 'Slider/images/ny.png' %}" ></li>
-					</ul>
-				</div>
+				<img src="{% static 'Slider/images/1.png' %}" alt="northern" class="above">
+				<img src="{% static 'Slider/images/2.png' %}" alt="ny" class="below">
 			</div>
 			
 			<div id="reg">					<!--TODO validatation-->
@@ -59,8 +55,8 @@
 					<h2>Sign Up</h2>
 					{{ form }}
 					<input type="submit" value="Sign Up">
+					<a href="{% url 'socialauth_begin' 'facebook' %}" id="fblogin"><img src="{% static 'images/fb.png' %}" alt="Login with Facebook"/></a>
 				</form>
-				<a href="{% url 'socialauth_begin' 'facebook' %}">Login with Facebook</a>
 			</div>
 		</div>
 	</body>

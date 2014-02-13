@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from datetime import datetime
 
 from hashlib import sha1, md5
-from models import Album, Page, Picture, MyRegistrationForm
+from models import Album, Page, Picture, MyRegistrationForm, Payment
 
 # Session handling
 def register_user(request):
@@ -92,6 +92,7 @@ def edit(request, albumid = None):
         return render_to_response("edit.html", {'username': request.user}, context_instance=RequestContext(request))
 
 #delete album
+@login_required(login_url='/')
 def delete(request, albumid):
     if albumid:
         album = get_object_or_404(Album, id=albumid)
@@ -99,6 +100,7 @@ def delete(request, albumid):
     return HttpResponseRedirect('/home/') 
 
 #save album changes
+@login_required(login_url='/')
 def save(request):
     if request.method == 'POST':
         #validate???
@@ -196,12 +198,15 @@ def explore(request):
 #Payment
 
 #order details
+@login_required(login_url='/')
 def pay(request):
     #generate pid for the transaction
     if request.method == 'POST':
         #save the album link as id
         request.session["albumlink"] = request.POST.get('albumlink')
-        return render_to_response("details.html", {}, context_instance=RequestContext(request))
+        album = Album.objects.get(link = request.session["albumlink"])
+        pagenum = album.pages.all().count()
+        return render_to_response("details.html", {'album' : album, 'pagenum': pagenum, 'username': request.user}, context_instance=RequestContext(request))
 
 #confirm the details
 def confirm(request):
@@ -223,17 +228,37 @@ def confirm(request):
         m = md5(checksumstr)
         checksum = m.hexdigest()
         
-        return render_to_response("confirm.html", { "session" : request.session, 'pid' : pid, 'sid' : SID, 'checksum' : checksum })  
+        album = Album.objects.get(link = request.session["albumlink"])
+        
+        return render_to_response("confirm.html", { "session" : request.session, 'pid' : pid, 'sid' : SID, 'checksum' : checksum, 'username': request.user, 'album': album })   
 
 #if the payment was successful
+@login_required(login_url='/')
 def success(request):
     #send an email to the customer
     subject = 'order details'
     message = 'Thanks for buying the album you can access the online form at'
     sender = 'Moments'
-    recipients = ['shanandi27@gmail.com']
+    recipients = request.session["mail"]
     send_mail(subject, message, sender, recipients)
-    return HttpResponseRedirect('/home/')
+    
+    if request.method == 'GET':
+        print "pid: " + request.GET.get('pid')
+        print "ref: " + request.GET.get('ref')
+        print "checksum: " + request.GET.get('checksum')
+        
+        payment = Payment()
+        payment.pid = request.GET.get('pid')
+        payment.date = datetime.utcnow().replace(tzinfo=utc)
+        payment.price = request.session['sum']
+        payment.reference = request.GET.get('ref')
+        album = Album.objects.get(link = request.session['albumlink'])
+        payment.item = album
+        payment.buyer = request.user
+        
+        payment.save()
+        
+    return render_to_response("success.html", {'username': request.user})
 
 #if the payment was canceled
 def cancel(request):
@@ -242,5 +267,6 @@ def cancel(request):
 #settings page
 @login_required(login_url='/')
 def settings(request):
-    albums = Album.objects.filter(owner = request.user)
-    return render_to_response("settings.html", {'username' : request.user, 'album' : albums}, context_instance=RequestContext(request))
+    payments = Payment.objects.filter(buyer = request.user)
+    
+    return render_to_response("settings.html", {'username' : request.user, 'payments': payments}, context_instance=RequestContext(request))

@@ -5,12 +5,13 @@
 	<head>
 		<title>Moments - Order Confirm</title>
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
-		<link rel="stylesheet" href="{% static 'viewstyle.css' %}" type="text/css" />
-		<script src="{% static 'view.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'detailsstyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'albumstyle.css' %}" type="text/css" />
 	</head>
 	<body>
 		{% include "header.html" %}
-		<div>
+		<div class="content">
+			<h1>Order Summary</h1>
 			<form method="POST" action="http://payments.webcourse.niksula.hut.fi/pay/" >
 				<input type="hidden" name="pid" value="{{ pid }}" />
 				<input type="hidden" name="sid" value="{{ sid }}" />
@@ -18,39 +19,44 @@
 				<input type="hidden" name="cancel_url" value="http://localhost:8000/payment/cancel" />
 				<input type="hidden" name="error_url" value="http://localhost:8000/payment/error" />
 				<input type="hidden" name="checksum" value="{{ checksum }}" />
-				<table>
+				<input type="hidden" id="id_amount" name="amount" value="{{ session.sum }}" />  
+				<table id="reviewtable">
 					<tr>
-						<td> <p>Full name</p> </td>
-						<td> <p id="full_name" name="full_name"> {{ session.name }} </p> </td>
+						<td class="text"> <p>Full name</p> </td>
+						<td> <p id="full_name"> {{ session.name }} </p> </td>
 					</tr>
 					<tr>
-						<td> <p>Country</p>  </td>
-						<td> <p id="country" name="country"> {{ session.country }} <p/> </td>
+						<td class="text"> <p>Country</p>  </td>
+						<td> <p id="country"> {{ session.country }} </p> </td>
 					</tr>
 					<tr>
-						<td> <p>Post Code</p> </td>
-						<td> <p id="post_code" name="post_code" > {{ session.postcode }} <p/> </td>
+						<td class="text"> <p>Post Code</p> </td>
+						<td> <p id="post_code"> {{ session.postcode }} </p> </td>
 					</tr>
 					<tr>
-						<td> <p>Address</p> </td>
-						<td> <p id="address" name="address" > {{ session.address }} <p/> </td>
+						<td class="text"> <p>Address</p> </td>
+						<td> <p id="address"> {{ session.address }} </p> </td>
 					</tr>
 					<tr>
-						<td> <p>Quantity</p> </td>
-						<td> <p id="quantity" name="quantity"> {{ session.quantity }} <p/> </td>
+						<td class="text"> <p>Quantity</p> </td>
+						<td> <p id="quantity"> {{ session.quantity }} </p> </td>
 					</tr>
 					<tr>
-						<td> <p>E-mail</p> </td>
-						<td> <p id="mail" name="mail" > {{ session.mail }} <p/> </td>
+						<td class="text"> <p>E-mail</p> </td>
+						<td> <p id="mail"> {{ session.mail }} </p> </td>
 					</tr>
 					<tr>
-						<td> <label for="id_amount">Summary</label> </td>
-						<td> <input type="text" id="id_amount" name="amount" value="{{ session.sum }}" />  </td>
+						<td class="text"> <label>Summary</label> </td>
+						<td> <p>{{ session.sum }}</p></td>
 					</tr>
 				</table>
-				
+				<input type="button" id="backbutton" value="<< Back" onclick="window.history.back()"/>
 				<input type="submit" id="orderalbum" value="Order Album" />
 			</form>
+			<div id="albumpreview">
+				<h2>Preview</h2>
+				{% include "publicalbum.html" with actalbum=album %}
+			</div>
 		</div>
 	</body>
 </html>

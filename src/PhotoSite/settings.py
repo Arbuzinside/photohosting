@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 #TEMPLATE_DIRS = (
- #  BASE_DIR + '/PhotoAlbum/Templates/'
+#  BASE_DIR + '/PhotoAlbum/Templates/'
 #)
 
 
@@ -131,7 +131,6 @@ USE_TZ = True
 #STATICFILES_DIRS = ( '/home/dima/git/group-22-2013/src/PhotoAlbum/Static/',)
 STATIC_URL = '/Static/'
 
-#email preferences
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'moments.albums@gmail.com'
 EMAIL_HOST_PASSWORD = 'Software'

@@ -1,0 +1,99 @@
+body
+{
+	font-family: Helvetica, Verdana, Sans-serif;
+	margin: 0;
+	background-image: url("/Static/images/bodyback.png");
+	background-repeat: no-repeat;
+	background-size: 100% 50%;
+	background-color: #f0f0f0;
+	min-width: 1000px;
+}
+
+form
+{
+	margin-top: 20px;
+	float: left;
+	width: 50%;
+}
+
+form table
+{
+	width: 100%;
+}
+
+#albumpreview
+{
+	float: right;
+	margin: 0;
+}
+
+form input 
+{
+	width: 100%;
+	height: 30px;
+	padding: 5px 0 5px 5px; 
+	border: 2px solid #ccc; 
+	-webkit-border-radius: 5px;
+	border-radius: 10px;
+	font-size: 120%;
+	margin-bottom: 5px;
+}
+
+#backbutton
+{
+	background-color: lightgrey;
+	border-color: #333333;
+	color: #333333;
+	float: left;
+}
+
+form input[type="submit"]
+{
+	background-color: darkmagenta;
+	border-color: darkmagenta;
+	color: white;
+	float: right;
+}
+
+form input[type="submit"], #backbutton
+{
+	width: 130px;
+	height: 45px;
+	font-weight: bold;
+	font-size: 120%;
+	margin: 10px 0;
+}
+
+#suminput
+{
+	font-size: 120%;
+	font-weight: bold;
+}
+
+#payments tr td, #payments tr th
+{
+	width: 200px;
+	height: 30px;
+}
+
+form #reviewtable tr td, #payments tr td
+{
+	padding-left: 10px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+form #reviewtable tr:nth-child(even), #payments tr:nth-child(even)
+{
+	background-color: white;
+}
+
+form #reviewtable tr:nth-child(odd), #payments tr:nth-child(odd)
+{
+	background-color: lightgray;
+}
+
+.text
+{
+	font-weight: bold;
+}

@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Moments - Order Confirm</title>
+		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'detailsstyle.css' %}" type="text/css" />
+		<script src="{% static 'redirect.js' %}"></script>
+	</head>
+	<body>
+		{% include "header.html" %}
+		<div class="content">
+			<h1>Congratulations!</h1>
+			<p>Your order has been been successfully received!<br>
+			You will be redirected to the home page in <span id="counter">5</span> second(s).
+			</p>
+		</div>
+	</body>
+</html>

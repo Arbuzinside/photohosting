@@ -4,9 +4,8 @@
 <html>
 	<head>
 		<title>Account settings</title>
-		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" >
-		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" >
-		<link rel="stylesheet" href="{% static 'albumstyle.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'detailsstyle.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css"  >
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="{% static 'albumcap.js' %}"></script>
 	</head>
@@ -15,7 +14,28 @@
 		
 		<div id="albums">
 			<h1>Account settings</h1>
-			
+			<h2>Ordered albums</h2>
+			{% if payments %}
+			<table id="payments">
+				<tr>
+					<th>Album title</th>
+					<th>Date</th>
+					<th>Price</th>
+					<th>Reference number</th>
+				</tr>
+				<!-- TODO  -->
+				{% for p in payments %}
+				<tr>
+					<td><a href="{% url 'PhotoAlbum.views.view' p.item.link %}">{{p.item.title}}</a></td>
+					<td>{{p.date}}</td>
+					<td>{{p.price}} €</td>
+					<td>{{p.reference}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+			{% else %}
+			<p>You have not purchased albums yet!</p>
+			{% endif %}
 		</div>
 	</body>
 </html>

@@ -24,8 +24,7 @@ div.albumcontrollers
 	z-index: 999;
 	position: relative;
 	top: -80px;
-	background-color: grey;
-	opacity: 0.8;
+	background-image: url(/Static/images/albumback.png);
 	height: 76px;
 	cursor: default;
 }
@@ -34,7 +33,13 @@ button.albumbutton, .holder
 {
 	float: right;
 	width: 80px;
-	opacity: 1;
+	-webkit-border-radius: 5px;
+	outline: none;
+}
+
+button.albumbutton:active, .holder:active, button.albumbutton:focus, .holder:focus
+{
+	outline: none;
 }
 
 p.albumcap
@@ -43,6 +48,6 @@ p.albumcap
 	width: 95%;
 	font-weight: bold;
 	font-size: 110%;
-	opacity: 1;
 	padding-left: 10px;
+	color: #333333;
 }
