@@ -65,6 +65,7 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/home/'
 LOGIN_ERROR_URL = '/index/'
 
+AUTH_PROFILE_MODULE = "auth.User"
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',

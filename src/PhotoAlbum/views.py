@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from datetime import datetime
 
 from hashlib import sha1, md5
-from models import Album, Page, Picture, MyRegistrationForm, Payment
+from models import Album, Page, Picture, Payment, MyRegistrationForm, UserProfileForm
 
 # Session handling
 def register_user(request):
@@ -90,6 +90,17 @@ def edit(request, albumid = None):
         return render_to_response("edit.html", {'album' : album, 'layouts' : layouts, 'images' : images, 'username': request.user}, context_instance=RequestContext(request))
     else:
         return render_to_response("edit.html", {'username': request.user}, context_instance=RequestContext(request))
+
+def change_user_data(request):
+    if request.method == 'POST':
+        form = UserProfileForm()
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Your data has been changed!')
+            return HttpResponseRedirect('/')
+        else:
+            return render_to_response("index.html", {}, context_instance=RequestContext(request))
+
 
 #delete album
 @login_required(login_url='/')
