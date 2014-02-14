@@ -4,11 +4,13 @@
 <html>
 	<head>
 		<title>Moments - View Album</title>
-		<meta property="og:image" content="{% static 'images/album.png' %}"/>
+		<meta charset="UTF-8">
+		<meta property="og:image" content="{{album.cover}}"/>
 		<meta property="og:title" content="MOMENTS - Create your album"/>
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'layoutstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'viewstyle.css' %}" type="text/css" />
+		<link rel="shortcut icon" href="{% static 'images/logo.png' %}">
 		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/vader/jquery-ui.css" rel="stylesheet">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>

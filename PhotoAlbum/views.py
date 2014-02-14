@@ -62,7 +62,7 @@ def index(request):
         return HttpResponseRedirect('/home/')
     else:
         form = MyRegistrationForm()
-        return render_to_response("index.html", {'form': form}, context_instance=RequestContext(request))  
+        return render_to_response("index.html", {'form': form.as_p()}, context_instance=RequestContext(request))  
 
 @login_required(login_url='/')
 def home(request):

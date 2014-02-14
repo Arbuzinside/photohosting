@@ -4,7 +4,9 @@
 <html>
 	<head>
 		<title>Moments</title>
+		<meta charset="UTF-8">
 		<link rel="stylesheet" href="{% static 'indexstyle.css' %}" type="text/css" >
+		<link rel="shortcut icon" href="{% static 'images/logo.png' %}">
 		<script src="//code.jquery.com/jquery-latest.min.js"></script>
 		<script src="//unslider.com/unslider.min.js"></script>
 		<script src="{% static 'Slider/slideshow.js' %}"></script>
@@ -59,7 +61,7 @@
 				<form method="POST" action="{% url 'PhotoAlbum.views.register_user' %}"> {% csrf_token %}
 					<h2>Sign Up</h2>
 					<p id="taken">Username is already taken</p>
-					{{ form }}
+					{{ form|safe }}
 					<input type="submit" value="Sign Up">
 					<a href="{% url 'socialauth_begin' 'facebook' %}" id="fblogin"><img src="{% static 'images/fb.png' %}" alt="Login with Facebook"/></a>
 				</form>
