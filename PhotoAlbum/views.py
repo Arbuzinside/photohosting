@@ -47,6 +47,7 @@ def login(request):
             auth.login(request, user)
             return HttpResponseRedirect('/home/')
     else:
+        messages.error(request, 'ERROR: username or password is invalid!')
         return HttpResponseRedirect('/')
             
 def logout(request):
@@ -249,7 +250,7 @@ def confirm(request):
 def success(request):
     #send an email to the customer
     subject = 'order details'
-    message = 'Thanks for buying the album you can access the online form at'
+    message = 'Dear ' + request.session["name"] + ',\n\nThank you for buying the album! \nYour reference number is: ' + request.GET.get('ref') + '. \n\nIf you have any questions, feel free to contact us.\n\n\nMOMENTS'
     sender = 'Moments'
     recipients = [ request.session["mail"] ]
     send_mail(subject, message, sender, recipients)

@@ -78,6 +78,7 @@ AUTHENTICATION_BACKENDS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'social_auth.context_processors.social_auth_backends',
     'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
 )
 
 SOCIAL_AUTH_URLOPEN_TIMEOUT = 30

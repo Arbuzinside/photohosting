@@ -174,7 +174,7 @@ h1
 	color: red;
 }
 
-.errorlist, .errormsg
+.errorlist
 {
 	margin: 0 32px 0 0;
 	padding: 0;
@@ -185,7 +185,7 @@ h1
 	float: right;
 }
 
-.successmsg, .messages
+.success
 {
 	margin: 10px 0 0 0;
 	padding: 0;
