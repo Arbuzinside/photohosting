@@ -85,8 +85,8 @@ SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
 SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
 SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
 
-SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook')
-SOCIAL_AUTH_USER_MODEL = 'auth.User'
+#SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook')
+#SOCIAL_AUTH_USER_MODEL = 'auth.User'
 
 
 SOCIAL_AUTH_FACEBOOK_KEY = '558139250949505'
@@ -94,6 +94,15 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '40d43486cc9885c35db222d13a82e9ac'
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+
+
+
+# we only need the engine name, as heroku takes care of the rest
+DATABASES = {
+ "default": {
+   "ENGINE": "django.db.backends.postgresql_psycopg2",
+ }
+}
 
 #DATABASES = {
  #   'default': {
@@ -105,13 +114,6 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
        # 'PORT': '', 
     #}
 #}
-
-# we only need the engine name, as heroku takes care of the rest
-DATABASES = {
-"default": {
-   "ENGINE": "django.db.backends.postgresql_psycopg2",
-}
-}
 
 
 # Parse database configuration from $DATABASE_URL
@@ -156,3 +158,8 @@ EMAIL_HOST_USER = 'moments.albums@gmail.com'
 EMAIL_HOST_PASSWORD = 'Software'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+try:
+  from local_settings import *
+except ImportError:
+  pass
