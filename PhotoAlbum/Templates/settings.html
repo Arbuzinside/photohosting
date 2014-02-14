@@ -16,11 +16,11 @@
 		
 		<div id="albums"> <!--TODO validatation-->
 			<h1>Account settings</h1>
-			<form method="POST" action="{% url 'PhotoAlbum.views.settings' %}"> {% csrf_token %}
+			<!--<form method="POST" action="{% url 'PhotoAlbum.views.settings' %}"> {% csrf_token %}
 					<h2>Profile Information</h2>
 					{{ form }}
 					<input type="submit" value="Save">
-				</form>
+				</form>-->
 			<h2>Ordered albums</h2>
 			{% if payments %}
 			<table id="payments">

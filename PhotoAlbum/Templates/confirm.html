@@ -17,9 +17,9 @@
 				<!-- all the necessary information is in hidden fields -->
 				<input type="hidden" name="pid" value="{{ pid }}" />
 				<input type="hidden" name="sid" value="{{ sid }}" />
-				<input type="hidden" name="success_url" value="http://moments-app.herokuapp.com/payment/success" /> <!-- this is hardwired -->
-				<input type="hidden" name="cancel_url" value="http://moments-app.herokuapp.com/payment/cancel" />
-				<input type="hidden" name="error_url" value="http://moments-app.herokuapp.com/payment/error" />
+				<input type="hidden" name="success_url" value="http://moments-app.herokuapp.com{% url 'PhotoAlbum.views.success' %}" />
+				<input type="hidden" name="cancel_url" value="http://moments-app.herokuapp.com{% url 'PhotoAlbum.views.home' %}" />
+				<input type="hidden" name="error_url" value="http://moments-app.herokuapp.com{% url 'PhotoAlbum.views.home' %}"/>
 				<input type="hidden" name="checksum" value="{{ checksum }}" />
 				<input type="hidden" id="id_amount" name="amount" value="{{ session.sum }}" /> 
 				<!-- lists the information of the buyer, which was given on the details pages -->
