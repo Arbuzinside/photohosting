@@ -71,12 +71,18 @@ AUTHENTICATION_BACKENDS = (
    'django.contrib.auth.backends.ModelBackend',
 )
 
+
+
+
+
 TEMPLATE_CONTEXT_PROCESSORS = (
-                            'django.contrib.auth.context_processors.auth',
-                            'social_auth.context_processors.social_auth_by_type_backends',
-                          
+    'social_auth.context_processors.social_auth_backends',
+    'django.contrib.auth.context_processors.auth',
 )
 
+SOCIAL_AUTH_URLOPEN_TIMEOUT = 30
+
+SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email',]
 SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
 SOCIAL_AUTH_UID_LENGTH = 16
 SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
@@ -84,13 +90,14 @@ SOCIAL_AUTH_NONCE_SERVER_URL_LENGTH = 16
 SOCIAL_AUTH_ASSOCIATION_SERVER_URL_LENGTH = 16
 SOCIAL_AUTH_ASSOCIATION_HANDLE_LENGTH = 16
 
-#SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook')
+SOCIAL_AUTH_ENABLED_BACKENDS = ('facebook')
+SOCIAL_AUTH_FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 #SOCIAL_AUTH_USER_MODEL = 'auth.User'
 
 
 SOCIAL_AUTH_FACEBOOK_KEY = '558139250949505'
 SOCIAL_AUTH_FACEBOOK_SECRET = '40d43486cc9885c35db222d13a82e9ac'
-FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
