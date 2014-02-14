@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Account settings</title>
+		<link rel="stylesheet" href="{% static 'homestyle.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'settingsstyle.css' %}" type="text/css" >
+		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css"  >
+		<link rel="stylesheet" href="{% static 'detailsstyle.css' %}" type="text/css" >
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="{% static 'albumcap.js' %}"></script>
+	</head>
+	<body>
+		{% include "header.html" %}
+		
+		<div id="albums"> <!--TODO validatation-->
+		       <img alt="sorry" src="{% static 'images/sorry.jpg' %}" />
+		</div>
+	</body>
+</html>
