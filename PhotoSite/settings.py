@@ -106,7 +106,12 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
     #}
 #}
 
-
+# we only need the engine name, as heroku takes care of the rest
+DATABASES = {
+"default": {
+   "ENGINE": "django.db.backends.postgresql_psycopg2",
+}
+}
 
 
 # Parse database configuration from $DATABASE_URL
