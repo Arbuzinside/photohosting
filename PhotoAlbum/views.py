@@ -94,6 +94,9 @@ def edit(request, albumid = None):
     else:
         return render_to_response("edit.html", {'username': request.user}, context_instance=RequestContext(request))
 
+def error_login(request):
+            return render_to_response("error.html", {}, context_instance=RequestContext(request))
+
 def change_user_data(request):
     if request.method == 'POST':
         form = UserProfileForm()
