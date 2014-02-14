@@ -143,7 +143,7 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/Static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '/PhotoAlbum/Static/'),
+    BASE_DIR + '/PhotoAlbum/Static/',
 )
 
 EMAIL_HOST = 'smtp.gmail.com'
