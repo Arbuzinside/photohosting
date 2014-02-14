@@ -1,5 +1,5 @@
 {% load staticfiles %}
-
+<!-- order details page -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,14 +9,16 @@
 		<link rel="stylesheet" href="{% static 'albumstyle.css' %}" type="text/css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="{% static 'details.js' %}"></script>
+		<!-- save to pagenum for the javascript code -->
 		<script>
-			pagenum = {{pagenum}};
+			pagenum = {{ pagenum }};
 		</script>
 	</head>
 	<body>
 		{% include "header.html" %}
 		<div class="content">
 			<h1>Order Details</h1>
+			<!-- the fields are validate with the checkfield function -->
 			<form method="POST" action="{% url 'PhotoAlbum.views.confirm' %}" onsubmit="return checkfields()" > {% csrf_token %}
 				<table>
 					<tr>
@@ -37,6 +39,7 @@
 					</tr>
 					<tr>
 						<td> <label for="quantity">Quantity:</label> </td>
+						<!-- the sum is calculated everytime the quantity changes -->
 						<td> <input type="number" id="quantity" name="quantity" min="1" value="1" onchange="recalculatesum()" /> </td>
 					</tr>
 					<tr>

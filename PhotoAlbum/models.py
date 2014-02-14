@@ -24,7 +24,8 @@ class Payment(models.Model):
     pid = models.CharField(max_length = 40)
     date = models.DateTimeField()
     item = models.ForeignKey(Album, related_name="payments")
-    buyer = models.ForeignKey(User, related_name="payments")
+    #if th user is not registered, the buyer field will be empty
+    buyer = models.ForeignKey(User, related_name="payments", blank = True, null = True)
     
     
 class MyRegistrationForm(UserCreationForm):
@@ -39,7 +40,7 @@ class MyRegistrationForm(UserCreationForm):
         
     def save(self, commit = True):
         user = super(MyRegistrationForm, self).save(commit=False)
-        super(MyRegistrationForm, self).clean()
+        cleaned_data = super(MyRegistrationForm, self).clean()
         
         if commit:
             user.save()
@@ -47,19 +48,21 @@ class MyRegistrationForm(UserCreationForm):
         return user
 
 class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+        
     def __init__(self, *args, **kwargs):
-        super(UserProfileForm, self).__init__(*args, **kwargs)
         forms.CharField(label='Username').initial = self.instance.username
-        forms.EmailField(label='Email').initial = self.instance.email
-        print(self.instance.username)
+        email = forms.EmailField(label='Email')
+        name = forms.CharField(label='First name')
+        surname = forms.CharField(label='Last name')
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        name = self.instance.username
+        self.fields['email'].initial = self.instance.email
         
     def save(self, *args, **kw):
         super(UserProfileForm, self).save(commit=False)
         self.instance.user.username = self.cleaned_data.get('username')
         self.instance.user.email = self.cleaned_data.get('email')
         self.instance.user.save()
-
-
-    class Meta:
-        model = User
-        fields = ('username', 'email')       

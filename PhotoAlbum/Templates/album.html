@@ -1,15 +1,21 @@
 {% load staticfiles %}
-
+<!-- contains the album preview that is shown on home page -->
 {% block content %}
 <div class="album">
-	<a href="{% url 'PhotoAlbum.views.view' actalbum.link %}"><img id="album.{{actalbum.id}}" class="albumimg" alt="album{{actalbum.id}}" src="{{actalbum.cover}}"/></a>
+	<!-- link to view to album -->
+	<a href="{% url 'PhotoAlbum.views.view' actalbum.link %}">
+		<img id="album.{{actalbum.id}}" class="albumimg" alt="album{{actalbum.id}}" src="{{actalbum.cover}}"/>
+	</a>
+	<!-- if the user moves his cursor on the album album the controller got displayed (edit + delete) -->
 	<div id="contr.{{actalbum.id}}" class="albumcontrollers">
 		<button class="albumbutton" type="button" 
+			<!-- Album delete, asks for confirmation -->
 			onclick="if(confirm('Are you sure you want to delete this album?')) window.location.href = '{% url 'PhotoAlbum.views.delete' albumid=actalbum.id %}'">
 			<img alt="deleteicon" src="{% static 'images/deleteicon.png' %}" /> Delete
 		</button>
+		<!-- edit button goes to the edit page -->
 		<button class="albumbutton" type="button" onclick="location.href='{% url 'PhotoAlbum.views.edit' actalbum.id %}'"><img alt="editicon" src="{% static 'images/editicon.png' %}" /> Edit</button>
-		<p class="albumcap">{{actalbum.title}}</p>
+		<p class="albumcap">{{ actalbum.title }}</p>
 	</div>
 </div>
 {% endblock %}

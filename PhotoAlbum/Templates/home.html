@@ -19,6 +19,7 @@
 					<input type="image" src="{% static 'images/newalbumicon.png' %}" alt="create new album">
 					<p>Add new album</p>
 				</form>
+				<!-- includes all your albums -->
 				{% for a in album %}
 					{% include "album.html" with actalbum=a %}
 				{% endfor %}

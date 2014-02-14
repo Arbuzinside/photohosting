@@ -12,6 +12,7 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		<script src="{% static 'edit.js' %}"></script>
 		<script>
+			<!-- gets the album information from the server -->
 			{% if album %}
 				jsonlayouts = {{layouts|safe}};
 				jsonimages = {{images|safe}}; 
@@ -29,12 +30,15 @@
 				{% else %}
 					<input type="checkbox" name="public" value="public" id="public"><label for="public" id="publiclabel">Public</label>
 				{% endif %}
+				
 				<input id="savealbum" type="submit" value="Save Album" />
+				<!-- date for the server -->
 				<input type="hidden" id="layouts" name="layouts" />
 				<input type="hidden" id="images" name="images" value="" />
 				<input type="hidden" id="albumid" name="albumid" value="{{album.id}}" />
 			</form>
 		</div>
+		<!-- shows the album -->
 		<div id="albumcontent">
 			<div id="leftcontroller">
 				<img class="move" id="leftmove" alt="back" src="{% static 'images/backicon.png' %}" onclick="moveleft()" />
@@ -49,16 +53,18 @@
 			<div id="rightpage"></div>
 		</div>
 		<div id="pagecounter"></div>
+		<!-- jqueryui dialog for selecting a layout -->
 		<div id="selectlayout" title="Select a layout">
 			<input name="layoutselect" type="radio" value="1" id="dialog1" class="dialogimages" ><label for="dialog1"><img alt="layout1" src="{% static 'images/layout1.png' %}"></label>
 			<input name="layoutselect" type="radio" value="2" id="dialog2" class="dialogimages" ><label for="dialog2"><img alt="layout2" src="{% static 'images/layout2.png' %}"></label>
 			<input name="layoutselect" type="radio" value="3" id="dialog3" class="dialogimages" ><label for="dialog3"><img alt="layout3" src="{% static 'images/layout3.png' %}"></label>
 			<input name="layoutselect" type="radio" value="4" id="dialog4" class="dialogimages" ><label for="dialog4"><img alt="layout4" src="{% static 'images/layout4.png' %}"></label>
 		</div>
+		<!-- jqueryui dialog for uploading picture -->
 		<div id="uploadpic" title="Add image url">
 			<input type="url" id="picurl" name="picurl" placeholder="http://">
 			<input type="text" id="piccaption" name="piccaption" placeholder="Caption">
-			
+			<!-- hidden field to check if the given link is an image -->
 			<div id="image-tester" style="display: none">
 				<img src="" alt="test" />
 			</div>

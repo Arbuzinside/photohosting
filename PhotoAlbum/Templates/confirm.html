@@ -1,5 +1,5 @@
 {% load staticfiles %}
-
+<!-- order details confirmation page -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,14 +12,17 @@
 		{% include "header.html" %}
 		<div class="content">
 			<h1>Order Summary</h1>
+			<!-- the form sends the data to the simple payment site -->
 			<form method="POST" action="http://payments.webcourse.niksula.hut.fi/pay/" >
+				<!-- all the necessary information is in hidden fields -->
 				<input type="hidden" name="pid" value="{{ pid }}" />
 				<input type="hidden" name="sid" value="{{ sid }}" />
-				<input type="hidden" name="success_url" value="http://localhost:8000/payment/success" />
-				<input type="hidden" name="cancel_url" value="http://localhost:8000/payment/cancel" />
-				<input type="hidden" name="error_url" value="http://localhost:8000/payment/error" />
+				<input type="hidden" name="success_url" value="http://moments-app.herokuapp.com/payment/success" /> <!-- this is hardwired -->
+				<input type="hidden" name="cancel_url" value="http://moments-app.herokuapp.com/payment/cancel" />
+				<input type="hidden" name="error_url" value="http://moments-app.herokuapp.com/payment/error" />
 				<input type="hidden" name="checksum" value="{{ checksum }}" />
-				<input type="hidden" id="id_amount" name="amount" value="{{ session.sum }}" />  
+				<input type="hidden" id="id_amount" name="amount" value="{{ session.sum }}" /> 
+				<!-- lists the information of the buyer, which was given on the details pages -->
 				<table id="reviewtable">
 					<tr>
 						<td class="text"> <p>Full name</p> </td>

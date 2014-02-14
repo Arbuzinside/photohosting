@@ -1,10 +1,11 @@
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import  HttpResponseRedirect
+from django.http import  HttpResponseRedirect, HttpResponseBadRequest, HttpResponse
 from django.template import RequestContext
 from django.utils.timezone import utc
 from django.utils import simplejson
 from django.contrib.auth import authenticate
 from django.contrib import auth, messages
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from datetime import datetime
@@ -28,6 +29,12 @@ def register_user(request):
             #show errors to the user
             return render_to_response("index.html", {'form': form}, context_instance=RequestContext(request))
 
+def usernameTaken(request):
+    username = request.POST.get('username')
+    if User.objects.filter(username = username).exists():
+        return HttpResponseBadRequest()
+    return HttpResponse('OK')
+    
 def login(request):
     #get the name and password
     name = request.POST.get('loginname', '')
@@ -48,7 +55,6 @@ def logout(request):
     return HttpResponseRedirect('/')
 
 # Main Methods
-
 
 def index(request):
     #if the user is already logged in redirect him to the home page
@@ -206,7 +212,6 @@ def explore(request):
 #Payment
 
 #order details
-@login_required(login_url='/')
 def pay(request):
     #generate pid for the transaction
     if request.method == 'POST':
@@ -241,20 +246,15 @@ def confirm(request):
         return render_to_response("confirm.html", { "session" : request.session, 'pid' : pid, 'sid' : SID, 'checksum' : checksum, 'username': request.user, 'album': album })   
 
 #if the payment was successful
-@login_required(login_url='/')
 def success(request):
     #send an email to the customer
     subject = 'order details'
     message = 'Thanks for buying the album you can access the online form at'
     sender = 'Moments'
-    recipients = request.session["mail"]
+    recipients = [ request.session["mail"] ]
     send_mail(subject, message, sender, recipients)
     
-    if request.method == 'GET':
-        print "pid: " + request.GET.get('pid')
-        print "ref: " + request.GET.get('ref')
-        print "checksum: " + request.GET.get('checksum')
-        
+    if request.method == 'GET':        
         payment = Payment()
         payment.pid = request.GET.get('pid')
         payment.date = datetime.utcnow().replace(tzinfo=utc)
@@ -262,7 +262,8 @@ def success(request):
         payment.reference = request.GET.get('ref')
         album = Album.objects.get(link = request.session['albumlink'])
         payment.item = album
-        payment.buyer = request.user
+        if (request.user.username != ""):
+            payment.buyer = request.user
         
         payment.save()
         

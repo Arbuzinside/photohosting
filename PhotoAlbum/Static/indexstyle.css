@@ -158,6 +158,22 @@ h1
 	display: none;
 }
 
+.messages
+{
+	margin: 0;
+	padding: 0;
+}
+
+.error
+{
+	margin: 10px 0 0 0;
+	padding: 0;
+	list-style: none;
+	font-weight: bold;
+	font-size: 120%;
+	color: red;
+}
+
 .errorlist, .errormsg
 {
 	margin: 0 32px 0 0;
@@ -177,4 +193,10 @@ h1
 	font-weight: bold;
 	font-size: 120%;
 	color: darkmagenta;
+}
+
+#taken
+{
+	opacity: 0;
+	color: red;
 }

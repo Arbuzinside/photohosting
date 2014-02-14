@@ -19,7 +19,8 @@ urlpatterns = patterns('',
     #url(r'^accounts/invalid/$',    'PhotoAlbum.auth_views.invalid_login'),
     
     #User reg urls
-    url(r'^accounts/register/$',  'PhotoAlbum.views.register_user'),
+    url(r'^accounts/register/$', 'PhotoAlbum.views.register_user'),
+    url(r'^accounts/usernameTaken/$', 'PhotoAlbum.views.usernameTaken', name='usernameTaken'),
     #url(r'^accounts/register_success/$', 'PhotoAlbum.auth_views.register_success'),
     url(r'^home/settings/$', 'PhotoAlbum.views.settings', name='settings'),
     url(r'^login/$', 'PhotoAlbum.views.login', name='login'),

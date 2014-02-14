@@ -4,6 +4,7 @@ $(document).ready(function() {
 	recalculatesum()
 })
 
+// one album's price is equal to pagenumber * 5
 function recalculatesum() {
 	$("#sum").val((pagenum * 5 * $("#quantity").val()));
 	$("#suminput").text((pagenum * 5 * $("#quantity").val()) + " €");
