@@ -1,5 +1,11 @@
 group-22-2013
 =============
+
+Final Submission
+----------------
+
+Link: https://github.com/Aalto-U-Web-Software-Development-course/group-22-2013/blob/master/User%20Documentation.pdf
+
 Project Plan
 ------------
 
