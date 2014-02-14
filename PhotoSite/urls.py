@@ -1,7 +1,10 @@
 from django.conf.urls import patterns, include, url
-
+from PhotoAlbum import *
 from django.contrib import admin
 admin.autodiscover()
+
+
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -10,6 +13,8 @@ urlpatterns = patterns('',
 
     url(r'^admin/$', include(admin.site.urls)),
     url(r'^error/$', 'PhotoAlbum.views.error_login'),
+    
+    
     url(r'', include('social_auth.urls')),
     #url(r'^login/$', RedirectView.as_view('/login/facebook'),
     #User auth urls
@@ -38,3 +43,5 @@ urlpatterns = patterns('',
     url(r'^view/(?P<albumlink>[a-f0-9]+)/$', 'PhotoAlbum.views.view', name='view'),
     url(r'^$', 'PhotoAlbum.views.index', name='index'),
 )
+
+

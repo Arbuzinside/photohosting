@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 from datetime import datetime
 from hashlib import sha1, md5
 from models import Album, Page, Picture, Payment, MyRegistrationForm, UserProfileForm
+from django.shortcuts import render
 
 # Session handling
 def register_user(request):
@@ -28,6 +29,7 @@ def register_user(request):
         else:
             #show errors to the user
             return render_to_response("index.html", {'form': form}, context_instance=RequestContext(request))
+        
 
 def usernameTaken(request):
     username = request.POST.get('username')
