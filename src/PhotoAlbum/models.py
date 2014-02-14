@@ -39,7 +39,7 @@ class MyRegistrationForm(UserCreationForm):
         
     def save(self, commit = True):
         user = super(MyRegistrationForm, self).save(commit=False)
-        cleaned_data = super(MyRegistrationForm, self).clean()
+        super(MyRegistrationForm, self).clean()
         
         if commit:
             user.save()
@@ -47,22 +47,19 @@ class MyRegistrationForm(UserCreationForm):
         return user
 
 class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('username', 'email')
-        
     def __init__(self, *args, **kwargs):
-        forms.CharField(label='Username').initial = self.instance.username
-        email = forms.EmailField(label='Email')
-        name = forms.CharField(label='First name')
-        surname = forms.CharField(label='Last name')
         super(UserProfileForm, self).__init__(*args, **kwargs)
-        name = self.instance.username
-        self.fields['email'].initial = self.instance.email
+        forms.CharField(label='Username').initial = self.instance.username
+        forms.EmailField(label='Email').initial = self.instance.email
+        print(self.instance.username)
         
     def save(self, *args, **kw):
         super(UserProfileForm, self).save(commit=False)
         self.instance.user.username = self.cleaned_data.get('username')
         self.instance.user.email = self.cleaned_data.get('email')
         self.instance.user.save()
-       
+
+
+    class Meta:
+        model = User
+        fields = ('username', 'email')       
