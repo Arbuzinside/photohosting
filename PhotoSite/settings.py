@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'PhotoAlbum',
     'social_auth',
-    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
