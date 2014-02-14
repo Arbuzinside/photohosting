@@ -23,6 +23,8 @@ class Picture(models.Model):
 class Payment(models.Model):
     pid = models.CharField(max_length = 40)
     date = models.DateTimeField()
+    price = models.IntegerField()
+    reference = models.IntegerField()
     item = models.ForeignKey(Album, related_name="payments")
     #if th user is not registered, the buyer field will be empty
     buyer = models.ForeignKey(User, related_name="payments", blank = True, null = True)
