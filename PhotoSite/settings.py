@@ -62,7 +62,7 @@ WSGI_APPLICATION = 'PhotoSite.wsgi.application'
 #Social auth
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/home/'
-LOGIN_ERROR_URL = '/'
+LOGIN_ERROR_URL = '/error/'
 
 #AUTH_PROFILE_MODULE = "auth.User"
 
