@@ -11,7 +11,6 @@ from django.core.mail import send_mail
 from datetime import datetime
 from hashlib import sha1, md5
 from models import Album, Page, Picture, Payment, MyRegistrationForm, UserProfileForm
-from django.shortcuts import render
 
 # Session handling
 def register_user(request):

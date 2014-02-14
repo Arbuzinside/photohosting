@@ -45,12 +45,15 @@ $(document).ready(function() {
 			Select: function() {
 				var url = $('input[name=picurl]').val();
 				var caption = $('input[name=piccaption]').val();
+				$('#image-tester img').attr('src', '');
 				if (url && caption) {
 					$('#image-tester img').attr('src', url);
 					$('#image-tester img').error(function() { //TODO: create css style for error instead alert message
-						alert('Error: not valid image!');
+						$('input[name=picurl]').css('border', '1px solid red');
 					});
+					
 					$('#image-tester img').load(function() {
+						$('input[name=picurl]').css('border', 'none');
 						uploadimage(url, caption);
 						$("#uploadpic").dialog( "close" ); 
 					});
@@ -147,7 +150,7 @@ function applylayout(index) {			// index: selected layout index
 		if ($(this).find("img").attr("src") != null)
 			url = $(this).find("img").attr("src");
 			caption = $(this).find("figcaption");
-			console.log("caption" + caption.html());
+			//console.log("caption" + caption.html());
 		if (url) {
 			// load the image data
 			$('input[name=picurl]').val(url);

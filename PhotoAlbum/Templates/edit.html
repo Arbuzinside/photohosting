@@ -4,9 +4,11 @@
 <html>
 	<head>
 		<title>Moments - Edit Album</title>
+		<meta charset="UTF-8">
 		<link rel="stylesheet" href="{% static 'editstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'headerstyle.css' %}" type="text/css" />
 		<link rel="stylesheet" href="{% static 'layoutstyle.css' %}" type="text/css" />
+		<link rel="shortcut icon" href="{% static 'images/logo.png' %}">
 		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/vader/jquery-ui.css" rel="stylesheet">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
@@ -66,7 +68,7 @@
 			<input type="text" id="piccaption" name="piccaption" placeholder="Caption">
 			<!-- hidden field to check if the given link is an image -->
 			<div id="image-tester" style="display: none">
-				<img src="" alt="test" />
+				<img src="http://example.com" alt="test" />
 			</div>
 		</div>
 	</body>

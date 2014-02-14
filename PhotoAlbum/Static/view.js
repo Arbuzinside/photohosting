@@ -85,6 +85,8 @@ function displaypages() {
 		page = 0;
 		applylayout(layouts[currentpage]);
 	}
+	else
+		$("#leftpage").html("");
 		
 	$("#leftpage div").each(function( index ) {
 		if (images[currentpage][index].src != '') {
@@ -102,6 +104,8 @@ function displaypages() {
 		page = 1;
 		applylayout(layouts[currentpage + 1]);
 	}
+	else
+		$("#rightpage").html("");
 	
 	$("#rightpage div").each(function( index ) {
 		if (images[currentpage + 1][index].src != '') {
