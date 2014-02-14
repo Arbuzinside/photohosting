@@ -95,7 +95,10 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-
+try:
+  from local_settings import *
+except ImportError:
+  pass
 
 # we only need the engine name, as heroku takes care of the rest
 DATABASES = {
@@ -103,6 +106,8 @@ DATABASES = {
    "ENGINE": "django.db.backends.postgresql_psycopg2",
  }
 }
+
+
 
 #DATABASES = {
  #   'default': {
@@ -115,10 +120,9 @@ DATABASES = {
     #}
 #}
 
-
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES = {'default': dj_database_url.config(default='postgres://postgres:admin@localhost:5432/postgres')}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -159,7 +163,4 @@ EMAIL_HOST_PASSWORD = 'Software'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-try:
-  from local_settings import *
-except ImportError:
-  pass
+

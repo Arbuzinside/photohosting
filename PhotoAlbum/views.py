@@ -3,14 +3,11 @@ from django.http import  HttpResponseRedirect
 from django.template import RequestContext
 from django.utils.timezone import utc
 from django.utils import simplejson
-
 from django.contrib.auth import authenticate
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-    
 from datetime import datetime
-
 from hashlib import sha1, md5
 from models import Album, Page, Picture, Payment, MyRegistrationForm, UserProfileForm
 
